@@ -1,3 +1,4 @@
+package slimekoban;
 
 import java.awt.Color;
 import edu.macalester.graphics.Point;
