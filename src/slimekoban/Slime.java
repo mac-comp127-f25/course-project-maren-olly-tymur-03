@@ -11,6 +11,7 @@ public class Slime {
 
     public Slime(Point slimePos) {
         this.slimePos = slimePos;
+        
     }
 
     public void createSlime(GraphicsGroup graphicsGroup) {

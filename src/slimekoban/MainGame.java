@@ -1,6 +1,7 @@
 package slimekoban;
 
 import edu.macalester.graphics.CanvasWindow;
+import edu.macalester.graphics.Point;
 
 public class MainGame {
     private final double CANVAS_HEIGHT = 600;
@@ -15,9 +16,9 @@ public class MainGame {
     }
 
     public MainGame() {
-        CanvasWindow canvas = new CanvasWindow("Slimekoban!", (int)CANVAS_WIDTH, (int)CANVAS_HEIGHT);
-        Slime slime = new Slime();
-        Crate crate = new Crate();
+        CanvasWindow canvas = new CanvasWindow("Slimekoban!", (int) CANVAS_WIDTH, (int) CANVAS_HEIGHT);
+        Slime slime = new Slime(new Point (50, 50));
+        //Crate crate = new Crate(20, 20, new Point ());
 
     }
 
