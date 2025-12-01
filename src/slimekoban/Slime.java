@@ -3,7 +3,7 @@ package slimekoban;
 import java.awt.Color;
 import edu.macalester.graphics.Point;
 import edu.macalester.graphics.Rectangle;
-import edu.macalester.graphics.GraphicsGroup;
+
 
 
 public class Slime {
@@ -15,6 +15,11 @@ public class Slime {
         this.slimePos = slimePos;
         slimeRectangle = new Rectangle(slimePos.getX(), slimePos.getY(), SLIME_SIZE, SLIME_SIZE);
         slimeRectangle.setFillColor(Color.WHITE);
+        slimeRectangle.setStrokeColor(Color.WHITE);
+    }
+
+    public Rectangle getGraphics() {
+        return slimeRectangle;
     }
 } 
 
