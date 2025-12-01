@@ -8,6 +8,9 @@ import edu.macalester.graphics.GraphicsGroup;
 public class Slime {
     private Point slimePos;
     private final double SLIME_SIZE = 20;
+    private double width;
+    private double height;
+    private Rectangle slimeRectangle;
 
     public Slime(Point slimePos) {
         this.slimePos = slimePos;
