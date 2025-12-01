@@ -26,7 +26,10 @@ public class MainGame {
         game.add(slime.getGraphics());
         canvas.add(game);
         //Crate crate = new Crate(20, 20, new Point ());
+    }
 
+    public void run() {
+        
     }
 
 
