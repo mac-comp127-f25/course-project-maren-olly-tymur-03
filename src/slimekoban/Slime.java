@@ -23,12 +23,6 @@ public class Slime {
         return slimeRectangle;
     }
 
-<<<<<<< HEAD
     
-=======
-    public void moveSlime(Point position) {
-        slimeRectangle.setPosition(position);
-    }
->>>>>>> 2fcd7f3a347b897640acdb07b8af4e3c13272eb3
 } 
 
