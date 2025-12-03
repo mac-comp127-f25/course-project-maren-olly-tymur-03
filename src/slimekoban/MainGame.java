@@ -7,8 +7,8 @@ import edu.macalester.graphics.Point;
 import edu.macalester.graphics.GraphicsGroup;
 
 public class MainGame {
-    private final double CANVAS_HEIGHT = 600;
-    private final double CANVAS_WIDTH = 600; 
+    private final double CANVAS_HEIGHT = 800;
+    private final double CANVAS_WIDTH = 800; 
     private Slime slime;
     private Crate crate;
     private GraphicsGroup game;
