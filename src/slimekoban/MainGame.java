@@ -32,5 +32,12 @@ public class MainGame {
         
     }
 
+    public double getCANVAS_HEIGHT() {
+        return CANVAS_HEIGHT;
+    }
+
+    public double getCANVAS_WIDTH() {
+        return CANVAS_WIDTH;
+    }
 
 }
