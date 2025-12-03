@@ -16,10 +16,13 @@ public class Slime {
         slimeRectangle = new Rectangle(slimePos.getX(), slimePos.getY(), SLIME_SIZE, SLIME_SIZE);
         slimeRectangle.setFillColor(Color.WHITE);
         slimeRectangle.setStrokeColor(Color.WHITE);
+        
     }
 
     public Rectangle getGraphics() {
         return slimeRectangle;
     }
+
+    
 } 
 
