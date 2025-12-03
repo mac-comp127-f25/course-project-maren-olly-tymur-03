@@ -10,14 +10,14 @@ public class GameBoard {
 
 
     public GameBoard() {
-        cells = GridCell.getCells();
+        // cells = GridCell.getCells();
     }
 
-    public boolean checkCellAvailability() {
+   /*  public boolean checkCellAvailability() {
         for (int i = 0; i < cells.size; i++) {
             
         }
-    }
+    } */
 }
 
 

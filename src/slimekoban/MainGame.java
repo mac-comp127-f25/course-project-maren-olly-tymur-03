@@ -22,7 +22,7 @@ public class MainGame {
         CanvasWindow canvas = new CanvasWindow("Slimekoban!", (int) CANVAS_WIDTH, (int) CANVAS_HEIGHT);
         canvas.setBackground(Color.GRAY);
         game = new GraphicsGroup();
-        Slime slime = new Slime(new Point (50, 50));
+        Slime slime = new Slime(new Point (0, 0));
         game.add(slime.getGraphics());
         canvas.add(game);
         //Crate crate = new Crate(20, 20, new Point ());
