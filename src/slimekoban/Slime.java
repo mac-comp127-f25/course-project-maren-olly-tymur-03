@@ -8,7 +8,7 @@ import edu.macalester.graphics.Rectangle;
 
 public class Slime {
     private Point slimePos;
-    private final double SLIME_SIZE = 20;
+    private final double SLIME_SIZE = 40;
     private Rectangle slimeRectangle;
 
     public Slime(Point slimePos) {
