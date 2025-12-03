@@ -8,7 +8,7 @@ import edu.macalester.graphics.Rectangle;
 
 public class Slime {
     private Point slimePos;
-    private final double SLIME_SIZE = 20;
+    private final double SLIME_SIZE = 40;
     private Rectangle slimeRectangle;
 
     public Slime(Point slimePos) {
@@ -23,6 +23,12 @@ public class Slime {
         return slimeRectangle;
     }
 
+<<<<<<< HEAD
     
+=======
+    public void moveSlime(Point position) {
+        slimeRectangle.setPosition(position);
+    }
+>>>>>>> 2fcd7f3a347b897640acdb07b8af4e3c13272eb3
 } 
 
