@@ -5,17 +5,19 @@ import java.util.List;
 
 
 public class GameBoard {
-    private List<GridCell> cells;
+    private ArrayList<GridCell> cells;
     private boolean neighborCellAvailable;
 
 
     public GameBoard() {
-        // cells = GridCell.getCells();
+        // cells = GridCell.getCellGrid();
     }
 
    /*  public boolean checkCellAvailability() {
         for (int i = 0; i < cells.size; i++) {
-            
+            if (cells[i].getObjectIdentifier() == 2) {
+                
+            }
         }
     } */
 }
