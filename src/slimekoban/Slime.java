@@ -21,5 +21,9 @@ public class Slime {
     public Rectangle getGraphics() {
         return slimeRectangle;
     }
+
+    public void moveSlime(Point position) {
+        slimeRectangle.setPosition(position);
+    }
 } 
 
