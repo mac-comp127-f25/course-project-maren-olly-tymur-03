@@ -23,6 +23,9 @@ public class Slime {
         return slimeRectangle;
     }
 
+    public Point getSlimePos() {
+        return slimePos;
+    }
     
 } 
 
