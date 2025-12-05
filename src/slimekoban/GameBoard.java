@@ -7,10 +7,11 @@ import java.util.List;
 public class GameBoard {
     private ArrayList<GridCell> cells;
     private boolean neighborCellAvailable;
+    private GridCell gridCell;
 
 
     public GameBoard() {
-        // cells = GridCell.getCellGrid();
+        cells = gridCell.getCellGrid();
     }
 
    /*  public boolean checkCellAvailability() {
