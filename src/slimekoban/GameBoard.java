@@ -7,7 +7,7 @@ import java.util.List;
 public class GameBoard {
     private boolean neighborCellAvailable;
     private GridCell gridCell;
-    private List<GridCell> cells = new ArrayList<>(gridCell.getCellGrid());
+    private List<List<Integer>> cells = new ArrayList<>();
 
 
     public GameBoard() {
@@ -16,9 +16,9 @@ public class GameBoard {
 
      public boolean checkCellAvailability() {
         for (int i = 0; i < cells.size(); i++) {
-            if (cells.get(i).getObjectIdentifier() == 2) {
-                return true;
-            }
+            // if (cells.get(i).getObjectIdentifier() == 2) {
+                
+            // }
         }
         return false;
     } 
