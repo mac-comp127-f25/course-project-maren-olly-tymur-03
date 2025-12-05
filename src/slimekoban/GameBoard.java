@@ -7,27 +7,34 @@ import edu.macalester.graphics.Point;
 
 
 public class GameBoard {
-    private boolean neighborCellAvailable;
-    private List<List<Integer>> cells = new ArrayList<>();
+    private static boolean neighborCellAvailable;
+    private List<List<Point>> cells = new ArrayList<>();
     private Slime slime;
+    
 
 
     public GameBoard() {
         slime = new Slime(slime.getSlimePos());
-        cells.add(new ArrayList<Integer>());
-        cells.add(new ArrayList<Integer>());
-        cells.add(new ArrayList<Integer>());
-        cells.add(new ArrayList<Integer>());
+        cells.add(new ArrayList<Point>());
+        cells.add(new ArrayList<Point>());
+        cells.add(new ArrayList<Point>());
+        cells.add(new ArrayList<Point>());
         for(int i = 0; i < 4; i++) {
             for( int n = 0; n < 4; n++) {
-                cells.get(i).add(n);
+                 // cells.get(i).add(n);
             }
         }
     }
 
-    // public boolean checkCellAvailability() {
+    public boolean checkCellAvailability() {
 
-    // } 
+        return neighborCellAvailable;
+    } 
+
+    /*  public void addWallToCell(int x, int y) {
+
+        cells.get(x).set(new Point (x, y));
+    } */
 }
 
 //we need a convert to pixals method
@@ -36,4 +43,7 @@ public class GameBoard {
     // can i move there?
         // is there something in the neighbor cell?
         // is there something in the nc's nc?
-        // 0 free, 1 wall, 2 slime
+        // 0 free, 1 wall, (invalid) 2 slime
+
+        // tymur's edit: slime is no longer recognized 
+        // on par with non controlled objects
