@@ -7,8 +7,8 @@ import edu.macalester.graphics.Point;
 import edu.macalester.graphics.GraphicsGroup;
 
 public class MainGame {
-    private final double CANVAS_HEIGHT = 800;
-    private final double CANVAS_WIDTH = 800; 
+    private static final double CANVAS_HEIGHT = 800;
+    private static final double CANVAS_WIDTH = 800; 
     private Slime slime;
     private Crate crate;
     private GraphicsGroup game;
@@ -32,11 +32,11 @@ public class MainGame {
         
     }
 
-    public double getCANVAS_HEIGHT() {
+    public static double getCANVAS_HEIGHT() {
         return CANVAS_HEIGHT;
     }
 
-    public double getCANVAS_WIDTH() {
+    public static double getCANVAS_WIDTH() {
         return CANVAS_WIDTH;
     }
 
