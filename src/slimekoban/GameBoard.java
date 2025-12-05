@@ -5,22 +5,23 @@ import java.util.List;
 
 
 public class GameBoard {
-    private ArrayList<GridCell> cells;
     private boolean neighborCellAvailable;
     private GridCell gridCell;
+    private List<GridCell> cells = new ArrayList<>(gridCell.getCellGrid());
 
 
     public GameBoard() {
-        cells = gridCell.getCellGrid();
+        //cells = gridCell.getCellGrid();
     }
 
-   /*  public boolean checkCellAvailability() {
-        for (int i = 0; i < cells.size; i++) {
-            if (cells[i].getObjectIdentifier() == 2) {
-                
+     public boolean checkCellAvailability() {
+        for (int i = 0; i < cells.size(); i++) {
+            if (cells.get(i).getObjectIdentifier() == 2) {
+                return true;
             }
         }
-    } */
+        return false;
+    } 
 }
 
 
