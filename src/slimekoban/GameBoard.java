@@ -8,20 +8,19 @@ import edu.macalester.graphics.Point;
 
 public class GameBoard {
     private static boolean neighborCellAvailable;
-    private List<List<Point>> cells = new ArrayList<>();
+    private List<List<Integer>> cells = new ArrayList<>();
     private Slime slime;
     
 
 
     public GameBoard() {
         slime = new Slime(slime.getSlimePos());
-        cells.add(new ArrayList<Point>());
-        cells.add(new ArrayList<Point>());
-        cells.add(new ArrayList<Point>());
-        cells.add(new ArrayList<Point>());
-        for(int i = 0; i < 4; i++) {
-            for( int n = 0; n < 4; n++) {
-                 // cells.get(i).add(n);
+        for(int count = 0; count < 20; count++) {
+            cells.add(new ArrayList<Integer>());
+        }
+        for(int i = 0; i < 20; i++) {
+            for( int n = 0; n < 20; n++) {
+                cells.get(i).add(n);
             }
         }
     }
