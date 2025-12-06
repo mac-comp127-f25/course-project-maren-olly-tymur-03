@@ -49,9 +49,9 @@ public class GameBoard {
         int slimeGridX = ((int) slime.getSlimePos().getX()) / 30;
         int slimeGridY = ((int) slime.getSlimePos().getY()) / 30;
         upNeighbor = cells.get(slimeGridX).get(slimeGridY + 1);
-        downNeighbor = new Point(slimeGridX, slimeGridY - 1);
-        leftNeighbor = new Point(slimeGridX - 1, slimeGridY);
-        rightNeighbor = new Point(slimeGridX + 1, slimeGridY);
+        downNeighbor = cells.get(slimeGridX).get(slimeGridY - 1);
+        leftNeighbor = cells.get(slimeGridX - 1).get(slimeGridY);
+        rightNeighbor = cells.get(slimeGridX + 1).get(slimeGridY);
 
         //check value of neighbors
         if (upNeighbor >= 0)
