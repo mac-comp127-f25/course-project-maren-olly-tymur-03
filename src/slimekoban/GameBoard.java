@@ -12,7 +12,6 @@ public class GameBoard {
     private Slime slime;
     
 
-
     public GameBoard() {
         slime = new Slime(slime.getSlimePos());
         for(int count = 0; count < 20; count++) {
@@ -29,10 +28,18 @@ public class GameBoard {
         return neighborCellAvailable;
     } 
 
-    /*  public void addWallToCell(int x, int y) {
-
-        cells.get(x).set(new Point (x, y));
-    } */
+    /**
+     * Takes a WallBlock's position on the canvas and translates it to
+     * its location in the grid array system, adds it as a wall (value of 1)
+     * to the grid array.
+     * @param xIndex call to getXGridCellLocation method from WallBlock
+     * @param yIndex call to getYGridCellLocation method from WallBlock
+     */
+    public void addWallBlockToGrid(Integer xIndex, Integer yIndex) {
+        xIndex /= 30;
+        yIndex /= 30;
+        cells.get((int) yIndex).add((int) xIndex, 1);
+    }
 }
 
 //we need a convert to pixals method
