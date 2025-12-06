@@ -36,8 +36,6 @@ public class GameBoard {
      * @param yIndex call to getYGridCellLocation method from WallBlock
      */
     public void addWallBlockToGrid(Integer xIndex, Integer yIndex) {
-        xIndex /= 30;
-        yIndex /= 30;
         cells.get((int) yIndex).add((int) xIndex, 1);
     }
 }
