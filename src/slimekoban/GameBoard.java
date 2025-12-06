@@ -10,10 +10,10 @@ public class GameBoard {
     private static boolean neighborCellAvailable;
     private List<List<Integer>> cells = new ArrayList<>();
     private Slime slime;
-    private Point upNeighbor;
-    private Point downNeighbor;
-    private Point leftNeighbor;
-    private Point rightNeighbor;
+    private Integer upNeighbor;
+    private Integer downNeighbor;
+    private Integer leftNeighbor;
+    private Integer rightNeighbor;
 
     public GameBoard() {
         slime = new Slime(slime.getSlimePos());
@@ -27,6 +27,9 @@ public class GameBoard {
         }
     }
 
+    public List<List<Integer>> getCells() {
+        return cells;
+    }
     public boolean checkCellAvailability() {
         return neighborCellAvailable;
     } 
@@ -45,30 +48,31 @@ public class GameBoard {
     public void checkSlimeNeighbors() {
         int slimeGridX = ((int) slime.getSlimePos().getX()) / 30;
         int slimeGridY = ((int) slime.getSlimePos().getY()) / 30;
-        upNeighbor = new Point(slimeGridX, slimeGridY + 1);
+        upNeighbor = cells.get(slimeGridX).get(slimeGridY + 1);
         downNeighbor = new Point(slimeGridX, slimeGridY - 1);
         leftNeighbor = new Point(slimeGridX - 1, slimeGridY);
         rightNeighbor = new Point(slimeGridX + 1, slimeGridY);
 
         //check value of neighbors
+        if (upNeighbor >= 0)
         // if value is 0, check again for neighbors neighbors
         //if value is 1, block movement
         //
     }
 
-    public Point getUpNeighbor() {
+    public Integer getUpNeighbor() {
         return upNeighbor;
     }
 
-    public Point getDownNeighbor() {
+    public Integer getDownNeighbor() {
         return downNeighbor;
     }
 
-    public Point getLeftNeighbor() {
+    public Integer getLeftNeighbor() {
         return leftNeighbor;
     }
 
-    public Point getRightNeighbor() {
+    public Integer getRightNeighbor() {
         return rightNeighbor;
     }
 }
