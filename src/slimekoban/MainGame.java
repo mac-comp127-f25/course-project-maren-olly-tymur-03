@@ -32,9 +32,9 @@ public class MainGame {
         gameBoard.addWallBlockToGrid(wall.getXGridCellLocation(), wall.getYGridCellLocation());
         game.add(slime.getGraphics());
         game.add(wall);
+        crate = new Crate(20, 20, new Point (90,30));
+        game.add(crate);
         canvas.add(game);
-        //Crate crate = new Crate(20, 20, new Point ());
-
         canvas.animate(() -> { // closure that runs the game loop
 
         // slime movement controls: trigger one move per key press (no holding)
@@ -82,6 +82,10 @@ public class MainGame {
 
     public GameBoard getGameBoard() {
         return gameBoard;
+    }
+
+    public Crate getCrate() {
+        return crate;
     }
 
 }
