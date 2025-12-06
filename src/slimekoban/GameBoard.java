@@ -45,19 +45,13 @@ public class GameBoard {
         cells.get((int) yIndex).add((int) xIndex, 1);
     }
 
-    public void checkSlimeNeighbors() {
+    public void updateSlimeNeighbors() {
         int slimeGridX = ((int) slime.getSlimePos().getX()) / 30;
         int slimeGridY = ((int) slime.getSlimePos().getY()) / 30;
         upNeighbor = cells.get(slimeGridX).get(slimeGridY + 1);
         downNeighbor = cells.get(slimeGridX).get(slimeGridY - 1);
         leftNeighbor = cells.get(slimeGridX - 1).get(slimeGridY);
         rightNeighbor = cells.get(slimeGridX + 1).get(slimeGridY);
-
-        //check value of neighbors
-        if (upNeighbor >= 0)
-        // if value is 0, check again for neighbors neighbors
-        //if value is 1, block movement
-        //
     }
 
     public Integer getUpNeighbor() {

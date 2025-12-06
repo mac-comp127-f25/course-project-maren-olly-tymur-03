@@ -44,15 +44,19 @@ public class MainGame {
 
         if (keys.contains(Key.LEFT_ARROW) && !previousKeys.contains(Key.LEFT_ARROW)) {
             slime.moveLeftOnce();
+            gameBoard.updateSlimeNeighbors();
         }
         if (keys.contains(Key.RIGHT_ARROW) && !previousKeys.contains(Key.RIGHT_ARROW)) {
             slime.moveRightOnce();
+            gameBoard.updateSlimeNeighbors();
         }
         if (keys.contains(Key.UP_ARROW) && !previousKeys.contains(Key.UP_ARROW)) {
             slime.moveUpOnce();
+            gameBoard.updateSlimeNeighbors();
         }
         if (keys.contains(Key.DOWN_ARROW) && !previousKeys.contains(Key.DOWN_ARROW)) {
             slime.moveDownOnce();
+            gameBoard.updateSlimeNeighbors();
         }
 
         // update previousKeys for edge detection
