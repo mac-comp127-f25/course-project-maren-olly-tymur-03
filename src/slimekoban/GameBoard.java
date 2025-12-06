@@ -9,14 +9,14 @@ import edu.macalester.graphics.Point;
 public class GameBoard {
     private static boolean neighborCellAvailable;
     private List<List<Integer>> cells = new ArrayList<>();
-    private Slime slime;
-    private Integer upNeighbor;
-    private Integer downNeighbor;
-    private Integer leftNeighbor;
-    private Integer rightNeighbor;
+    //private Slime slime;
+    public Integer upNeighbor = 0;
+    public Integer downNeighbor = 0;
+    public Integer leftNeighbor = 0;
+    public Integer rightNeighbor = 0;
 
     public GameBoard() {
-        slime = new Slime(slime.getSlimePos());
+        //this.slime = slime;
         for(int count = 0; count < 20; count++) {
             cells.add(new ArrayList<Integer>());
         }
@@ -45,14 +45,27 @@ public class GameBoard {
         cells.get((int) yIndex).add((int) xIndex, 1);
     }
 
-    public void updateSlimeNeighbors() {
+    public void updateSlimeNeighbors(Slime slime) {
+        System.out.println(slime);
+        System.out.println(slime.getSlimePos().getX() / 30);
+        System.out.println(slime.getSlimePos().getY() / 30);
         int slimeGridX = ((int) slime.getSlimePos().getX()) / 30;
         int slimeGridY = ((int) slime.getSlimePos().getY()) / 30;
-        upNeighbor = cells.get(slimeGridX).get(slimeGridY + 1);
-        downNeighbor = cells.get(slimeGridX).get(slimeGridY - 1);
-        leftNeighbor = cells.get(slimeGridX - 1).get(slimeGridY);
-        rightNeighbor = cells.get(slimeGridX + 1).get(slimeGridY);
+        
+        if(cells.get(slimeGridY + 1).get(slimeGridX) >= 0 && cells.get(slimeGridY + 1).get(slimeGridX) <= 20) {
+            upNeighbor = cells.get(slimeGridY + 1).get(slimeGridX);
+        }
+        if(cells.get(slimeGridY - 1).get(slimeGridX) >= 0 && cells.get(slimeGridY - 1).get(slimeGridX) <= 20) {
+            downNeighbor = cells.get(slimeGridY - 1).get(slimeGridX);
+        } 
+        if(cells.get(slimeGridY).get(slimeGridX - 1) >= 0 && cells.get(slimeGridY).get(slimeGridX - 1) <= 20) {
+            leftNeighbor = cells.get(slimeGridY).get(slimeGridX - 1);
+        }
+        if(cells.get(slimeGridY).get(slimeGridX + 1) >= 0 && cells.get(slimeGridY).get(slimeGridX + 1) <= 20) {
+            rightNeighbor = cells.get(slimeGridY).get(slimeGridX + 1);
+        }
     }
+    
 
     public Integer getUpNeighbor() {
         return upNeighbor;

@@ -26,10 +26,11 @@ public class MainGame {
         CanvasWindow canvas = new CanvasWindow("Slimekoban!", (int) CANVAS_WIDTH, (int) CANVAS_HEIGHT);
         canvas.setBackground(Color.GRAY);
         game = new GraphicsGroup();
-        Slime slime = new Slime(new Point (0, 0));
-        game.add(slime.getGraphics());
         WallBlock wall = new WallBlock(90, 0, 30, 30);
+        gameBoard = new GameBoard();
+        slime = new Slime(new Point (0, 0), gameBoard);
         gameBoard.addWallBlockToGrid(wall.getXGridCellLocation(wall), wall.getYGridCellLocation(wall));
+        game.add(slime.getGraphics());
         game.add(wall);
         canvas.add(game);
         //Crate crate = new Crate(20, 20, new Point ());
@@ -44,20 +45,22 @@ public class MainGame {
 
         if (keys.contains(Key.LEFT_ARROW) && !previousKeys.contains(Key.LEFT_ARROW)) {
             slime.moveLeftOnce();
-            gameBoard.updateSlimeNeighbors();
+            gameBoard.updateSlimeNeighbors(slime);
         }
         if (keys.contains(Key.RIGHT_ARROW) && !previousKeys.contains(Key.RIGHT_ARROW)) {
             slime.moveRightOnce();
-            gameBoard.updateSlimeNeighbors();
+            gameBoard.updateSlimeNeighbors(slime);
         }
         if (keys.contains(Key.UP_ARROW) && !previousKeys.contains(Key.UP_ARROW)) {
             slime.moveUpOnce();
-            gameBoard.updateSlimeNeighbors();
+            gameBoard.updateSlimeNeighbors(slime);
         }
         if (keys.contains(Key.DOWN_ARROW) && !previousKeys.contains(Key.DOWN_ARROW)) {
             slime.moveDownOnce();
-            gameBoard.updateSlimeNeighbors();
+            gameBoard.updateSlimeNeighbors(slime);
         }
+
+        //gameBoard.updateSlimeNeighbors();
 
         // update previousKeys for edge detection
         previousKeys.clear();
@@ -75,6 +78,10 @@ public class MainGame {
 
     public static double getCANVAS_WIDTH() {
         return CANVAS_WIDTH;
+    }
+
+    public GameBoard getGameBoard() {
+        return gameBoard;
     }
 
 }

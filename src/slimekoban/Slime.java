@@ -15,8 +15,9 @@ public class Slime {
   
 
 
-    public Slime(Point slimePos) {
+    public Slime(Point slimePos, GameBoard gameBoard) {
         this.slimePos = slimePos;
+        this.gameBoard = gameBoard;
         slimeRectangle = new Rectangle(slimePos.getX(), slimePos.getY(), SLIME_SIZE, SLIME_SIZE);
         slimeRectangle.setFillColor(Color.WHITE);
         slimeRectangle.setStrokeColor(Color.WHITE);
