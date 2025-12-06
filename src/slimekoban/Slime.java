@@ -11,6 +11,7 @@ public class Slime {
     private final double SLIME_SIZE = 30;
     private Rectangle slimeRectangle;
     private boolean moveLeft, moveRight, moveUp, moveDown;
+    private GameBoard gameBoard;
   
 
 
@@ -72,6 +73,7 @@ public class Slime {
     // }
     
     public void moveLeftOnce() {
+        //if ()
         if (slimePos.getX() > 0) {
             slimePos = new Point(slimePos.getX() - SLIME_SIZE, slimePos.getY());
             slimeRectangle.setPosition(slimePos);
