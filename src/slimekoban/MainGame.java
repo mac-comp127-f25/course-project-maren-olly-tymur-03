@@ -32,8 +32,9 @@ public class MainGame {
         gameBoard.addWallBlockToGrid(wall.getXGridCellLocation(), wall.getYGridCellLocation());
         game.add(slime.getGraphics());
         game.add(wall);
-        crate = new Crate(20, 20, new Point (90,30));
-        game.add(crate);
+        // crate = new Crate(20, 20, new Point (90,30));
+        // gameBoard.addCrateToGrid(crate.getXCrateLocation(), crate.getYCrateLocation());
+        // game.add(crate);
         canvas.add(game);
         canvas.animate(() -> { // closure that runs the game loop
 
@@ -84,8 +85,8 @@ public class MainGame {
         return gameBoard;
     }
 
-    public Crate getCrate() {
-        return crate;
-    }
+    // public Crate getCrate() {
+    //     return crate;
+    // }
 
 }

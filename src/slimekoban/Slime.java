@@ -12,8 +12,8 @@ public class Slime {
     private Rectangle slimeRectangle;
     private boolean moveLeft, moveRight, moveUp, moveDown;
     private GameBoard gameBoard;
-  
-
+    
+    
 
     public Slime(Point slimePos, GameBoard gameBoard) {
         this.slimePos = slimePos;
@@ -86,17 +86,9 @@ public class Slime {
     public void moveRightOnce() {
         Integer rightNeighbor = gameBoard.getRightNeighbor();
         if (rightNeighbor != 1) {
-            if(rightNeighbor == 2) {
-                if (slimePos.getX() < MainGame.getCANVAS_WIDTH() - SLIME_SIZE) {
-                    slimePos = new Point(slimePos.getX() + SLIME_SIZE, slimePos.getY());
-                    slimeRectangle.setPosition(slimePos);
-
-            }
-            } else {
-                if (slimePos.getX() < MainGame.getCANVAS_WIDTH() - SLIME_SIZE) {
-                    slimePos = new Point(slimePos.getX() + SLIME_SIZE, slimePos.getY());
-                    slimeRectangle.setPosition(slimePos);
-                }
+            if (slimePos.getX() < MainGame.getCANVAS_WIDTH() - SLIME_SIZE) {
+                slimePos = new Point(slimePos.getX() + SLIME_SIZE, slimePos.getY());
+                slimeRectangle.setPosition(slimePos);
             }
         }
     }
@@ -120,8 +112,5 @@ public class Slime {
             }
         }
     }
-
-   
-    
 } 
 

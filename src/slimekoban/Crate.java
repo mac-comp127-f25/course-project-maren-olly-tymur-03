@@ -18,6 +18,14 @@ public class Crate extends Rectangle {
         setStrokeColor(Color.BLACK);
     }
 
+    public Point getCratePosition() {
+        return position;
+    }
+
+    public void setCratePosition(Point position) {
+        this.position = position;
+    }
+
     // reurns the Y index of where the crate is supossed to be the the cells arraylist
    public Integer getYCrateLocation() {
         Integer yIndex = Integer.valueOf((int) position.getY());
