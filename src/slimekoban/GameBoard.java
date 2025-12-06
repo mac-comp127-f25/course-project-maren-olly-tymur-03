@@ -26,7 +26,6 @@ public class GameBoard {
     }
 
     public boolean checkCellAvailability() {
-
         return neighborCellAvailable;
     } 
 
