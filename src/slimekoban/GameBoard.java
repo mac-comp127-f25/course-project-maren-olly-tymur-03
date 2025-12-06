@@ -22,7 +22,7 @@ public class GameBoard {
         }
         for(int i = 0; i < 20; i++) {
             for( int n = 0; n < 20; n++) {
-                cells.get(i).add(n);
+                cells.get(i).add(n, 0);
             }
         }
     }
@@ -52,17 +52,29 @@ public class GameBoard {
         int slimeGridX = ((int) slime.getSlimePos().getX()) / 30;
         int slimeGridY = ((int) slime.getSlimePos().getY()) / 30;
         
-        if(cells.get(slimeGridY + 1).get(slimeGridX) >= 0 && cells.get(slimeGridY + 1).get(slimeGridX) <= 20) {
-            upNeighbor = cells.get(slimeGridY + 1).get(slimeGridX);
+        if (slimeGridY == 0) {
+            upNeighbor = 1;
+        } else {
+            upNeighbor = cells.get(slimeGridY - 1).get(slimeGridX);
+            System.out.println("up " + upNeighbor + ", "   + cells.get(slimeGridY - 1).get(slimeGridX));
         }
-        if(cells.get(slimeGridY - 1).get(slimeGridX) >= 0 && cells.get(slimeGridY - 1).get(slimeGridX) <= 20) {
-            downNeighbor = cells.get(slimeGridY - 1).get(slimeGridX);
-        } 
-        if(cells.get(slimeGridY).get(slimeGridX - 1) >= 0 && cells.get(slimeGridY).get(slimeGridX - 1) <= 20) {
+        if (slimeGridY == 20) {
+            downNeighbor = 1;
+        } else {
+            downNeighbor = cells.get(slimeGridY + 1).get(slimeGridX);
+            System.out.println("down " + downNeighbor  + ", " + cells.get(slimeGridY + 1).get(slimeGridX));
+        }
+        if (slimeGridX == 0) {
+           leftNeighbor = 1; 
+        } else {
             leftNeighbor = cells.get(slimeGridY).get(slimeGridX - 1);
+            System.out.println("left " + leftNeighbor  + ", " + cells.get(slimeGridY).get(slimeGridX - 1));
         }
-        if(cells.get(slimeGridY).get(slimeGridX + 1) >= 0 && cells.get(slimeGridY).get(slimeGridX + 1) <= 20) {
+        if(slimeGridX == 20) {
+            rightNeighbor = 1;
+        } else {
             rightNeighbor = cells.get(slimeGridY).get(slimeGridX + 1);
+            System.out.println("right " + rightNeighbor + ", " + cells.get(slimeGridY).get(slimeGridX + 1));
         }
     }
     

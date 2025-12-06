@@ -104,8 +104,8 @@ public class Slime {
     }
 
     public void moveDownOnce() {
-        Integer downInteger = gameBoard.getDownNeighbor();
-        if(downInteger != 1) {
+        Integer downNeighnor = gameBoard.getDownNeighbor();
+        if(downNeighnor != 1) {
             if (slimePos.getY() < MainGame.getCANVAS_HEIGHT() - SLIME_SIZE) {
                 slimePos = new Point(slimePos.getX(), slimePos.getY() + SLIME_SIZE);
                 slimeRectangle.setPosition(slimePos);

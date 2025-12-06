@@ -7,6 +7,7 @@ import edu.macalester.graphics.Point;
 public class WallBlock extends Rectangle {
     private static final Color WALL_COLOR = Color.DARK_GRAY;
     public Point position;
+    
 
 
     public WallBlock(double x, double y, double width, double height) {
@@ -21,8 +22,8 @@ public class WallBlock extends Rectangle {
     }
 
    // reurns the Y index of where the wall is supossed to be the the cells arraylist
-   public Integer getYGridCellLocation(WallBlock wall) {
-        Integer yIndex = Integer.valueOf((int) wall.getPos().getY());
+   public Integer getYGridCellLocation() {
+        Integer yIndex = Integer.valueOf((int) position.getY());
         if (yIndex >= 30) {
             yIndex /= 30;
         } else {
@@ -32,8 +33,8 @@ public class WallBlock extends Rectangle {
    }
 
    // reurns the X index of where the wall is supossed to be the the cells arraylist
-   public Integer getXGridCellLocation(WallBlock wall) {
-        Integer xIndex = Integer.valueOf((int) wall.getPos().getX());
+   public Integer getXGridCellLocation() {
+        Integer xIndex = Integer.valueOf((int) position.getX());
         if (xIndex >= 30) {
             xIndex /= 30;
         } else {

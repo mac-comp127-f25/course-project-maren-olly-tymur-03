@@ -29,7 +29,7 @@ public class MainGame {
         WallBlock wall = new WallBlock(90, 0, 30, 30);
         gameBoard = new GameBoard();
         slime = new Slime(new Point (0, 0), gameBoard);
-        gameBoard.addWallBlockToGrid(wall.getXGridCellLocation(wall), wall.getYGridCellLocation(wall));
+        gameBoard.addWallBlockToGrid(wall.getXGridCellLocation(), wall.getYGridCellLocation());
         game.add(slime.getGraphics());
         game.add(wall);
         canvas.add(game);
