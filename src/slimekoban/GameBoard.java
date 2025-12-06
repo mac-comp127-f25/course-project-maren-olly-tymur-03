@@ -10,7 +10,10 @@ public class GameBoard {
     private static boolean neighborCellAvailable;
     private List<List<Integer>> cells = new ArrayList<>();
     private Slime slime;
-    
+    private Integer upNeighbor;
+    private Integer downNeighbor;
+    private Integer leftNeighbor;
+    private Integer rightNeighbor;
 
     public GameBoard() {
         slime = new Slime(slime.getSlimePos());
@@ -37,6 +40,10 @@ public class GameBoard {
      */
     public void addWallBlockToGrid(Integer xIndex, Integer yIndex) {
         cells.get((int) yIndex).add((int) xIndex, 1);
+    }
+
+    public void checkSlimeNeighbors() {
+        slime.getSlimePos();
     }
 }
 
