@@ -15,6 +15,7 @@ public class MainGame {
     private Crate crate;
     private GraphicsGroup game;
     private CanvasWindow canvas;
+    private GameBoard gameBoard;
     private Set<Key> previousKeys = new HashSet<>();
 
     public static void main(String[] args){
@@ -28,6 +29,7 @@ public class MainGame {
         Slime slime = new Slime(new Point (0, 0));
         game.add(slime.getGraphics());
         WallBlock wall = new WallBlock(90, 0, 30, 30);
+        gameBoard.addWallBlockToGrid(wall.getXGridCellLocation(wall), wall.getYGridCellLocation(wall));
         game.add(wall);
         canvas.add(game);
         //Crate crate = new Crate(20, 20, new Point ());
