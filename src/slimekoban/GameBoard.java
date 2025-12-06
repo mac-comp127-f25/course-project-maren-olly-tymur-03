@@ -45,6 +45,17 @@ public class GameBoard {
         cells.get((int) yIndex).add((int) xIndex, 1);
     }
 
+    /**
+     * Takes a crate's position on the canvas and translates it to
+     * its location in the grid array system, adds it as a wall (value of 1)
+     * to the grid array.
+     * @param xIndex call to getXCrateLocation method from Crate
+     * @param yIndex call to getYCrateLocation method from Crate
+     */
+    public void addCrateToGrid(Integer xIndex, Integer yIndex) {
+        cells.get((int) yIndex).add((int) xIndex, 2);
+    }
+
     public void updateSlimeNeighbors(Slime slime) {
         System.out.println(slime);
         System.out.println(slime.getSlimePos().getX() / 30);
@@ -102,7 +113,9 @@ public class GameBoard {
     // can i move there?
         // is there something in the neighbor cell?
         // is there something in the nc's nc?
-        // 0 free, 1 wall, (invalid) 2 slime
+        // 0 free, 1 wall, ~~(invalid) 2 slime~~ -> 2 crate
 
         // tymur's edit: slime is no longer recognized 
         // on par with non controlled objects
+
+        // olly's edit: 2 now represents a Crate object 
