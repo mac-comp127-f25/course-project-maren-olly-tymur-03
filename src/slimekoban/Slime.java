@@ -50,26 +50,26 @@ public class Slime {
         this.moveDown = moveDown;
     }
 
-    public void update() {
-        if (moveLeft) {
-            if (slimePos.getX() > 0)
-            slimePos = new Point(slimePos.getX() - 30, slimePos.getY());
-        }
-        if (moveRight) {
-            if (slimePos.getX() < MainGame.getCANVAS_WIDTH() - SLIME_SIZE)
-            slimePos = new Point(slimePos.getX() + 30, slimePos.getY());
-        }
-        if (moveUp) {
-            if (slimePos.getY() > 0)
-            slimePos = new Point(slimePos.getX(), slimePos.getY() - 30);
-        }
-        if (moveDown) {
-            if (slimePos.getY() < 600)
-            slimePos = new Point(slimePos.getX(), slimePos.getY() + 30);
-            System.out.println(slimePos.getY());
-        }
-        slimeRectangle.setPosition(slimePos);
-    }
+    // public void update() {
+    //     if (moveLeft) {
+    //         if (slimePos.getX() > 0)
+    //         slimePos = new Point(slimePos.getX() - 30, slimePos.getY());
+    //     }
+    //     if (moveRight) {
+    //         if (slimePos.getX() < MainGame.getCANVAS_WIDTH() - SLIME_SIZE)
+    //         slimePos = new Point(slimePos.getX() + 30, slimePos.getY());
+    //     }
+    //     if (moveUp) {
+    //         if (slimePos.getY() > 0)
+    //         slimePos = new Point(slimePos.getX(), slimePos.getY() - 30);
+    //     }
+    //     if (moveDown) {
+    //         if (slimePos.getY() < 600)
+    //         slimePos = new Point(slimePos.getX(), slimePos.getY() + 30);
+    //         System.out.println(slimePos.getY());
+    //     }
+    //     slimeRectangle.setPosition(slimePos);
+    // }
     
     public void moveLeftOnce() {
         if (slimePos.getX() > 0) {
