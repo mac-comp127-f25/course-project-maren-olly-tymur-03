@@ -11,6 +11,7 @@ public class Slime {
     private final double SLIME_SIZE = 30;
     private Rectangle slimeRectangle;
     private boolean moveLeft, moveRight, moveUp, moveDown;
+    private GameBoard gameBoard;
   
 
 
@@ -72,30 +73,42 @@ public class Slime {
     // }
     
     public void moveLeftOnce() {
-        if (slimePos.getX() > 0) {
-            slimePos = new Point(slimePos.getX() - SLIME_SIZE, slimePos.getY());
-            slimeRectangle.setPosition(slimePos);
+        Integer leftNeighbor = gameBoard.getLeftNeighbor();
+        if (leftNeighbor != 1) {
+            if (slimePos.getX() > 0) {
+                slimePos = new Point(slimePos.getX() - SLIME_SIZE, slimePos.getY());
+                slimeRectangle.setPosition(slimePos);
+            }
         }
     }
 
     public void moveRightOnce() {
-        if (slimePos.getX() < MainGame.getCANVAS_WIDTH() - SLIME_SIZE) {
-            slimePos = new Point(slimePos.getX() + SLIME_SIZE, slimePos.getY());
-            slimeRectangle.setPosition(slimePos);
+        Integer rightNeighbor = gameBoard.getRightNeighbor();
+        if (rightNeighbor != 1) {
+            if (slimePos.getX() < MainGame.getCANVAS_WIDTH() - SLIME_SIZE) {
+                slimePos = new Point(slimePos.getX() + SLIME_SIZE, slimePos.getY());
+                slimeRectangle.setPosition(slimePos);
+            }
         }
     }
 
     public void moveUpOnce() {
-        if (slimePos.getY() > 0) {
-            slimePos = new Point(slimePos.getX(), slimePos.getY() - SLIME_SIZE);
-            slimeRectangle.setPosition(slimePos);
+        Integer upNeighbor = gameBoard.getUpNeighbor();
+        if (upNeighbor != 1) {
+            if (slimePos.getY() > 0) {
+                slimePos = new Point(slimePos.getX(), slimePos.getY() - SLIME_SIZE);
+                slimeRectangle.setPosition(slimePos);
+            }
         }
     }
 
     public void moveDownOnce() {
-        if (slimePos.getY() < MainGame.getCANVAS_HEIGHT() - SLIME_SIZE) {
-            slimePos = new Point(slimePos.getX(), slimePos.getY() + SLIME_SIZE);
-            slimeRectangle.setPosition(slimePos);
+        Integer downInteger = gameBoard.getDownNeighbor();
+        if(downInteger != 1) {
+            if (slimePos.getY() < MainGame.getCANVAS_HEIGHT() - SLIME_SIZE) {
+                slimePos = new Point(slimePos.getX(), slimePos.getY() + SLIME_SIZE);
+                slimeRectangle.setPosition(slimePos);
+            }
         }
     }
 
