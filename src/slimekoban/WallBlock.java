@@ -20,5 +20,25 @@ public class WallBlock extends Rectangle {
         return position;
     }
 
-   
+   // reurns the Y index of where the wall is supossed to be the the cells arraylist
+   public Integer getYGridCellLocation(WallBlock wall) {
+        Integer yIndex = Integer.valueOf((int) wall.getPos().getY());
+        if (yIndex >= 30) {
+            yIndex /= 30;
+        } else {
+            yIndex = 0;
+        }
+        return yIndex;
+   }
+
+   // reurns the X index of where the wall is supossed to be the the cells arraylist
+   public Integer getXGridCellLocation(WallBlock wall) {
+        Integer xIndex = Integer.valueOf((int) wall.getPos().getX());
+        if (xIndex >= 30) {
+            xIndex /= 30;
+        } else {
+            xIndex = 0;
+        }
+        return xIndex;
+   }
 }
