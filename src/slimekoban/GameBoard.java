@@ -63,25 +63,26 @@ public class GameBoard {
         int slimeGridX = ((int) slime.getSlimePos().getX()) / 30;
         int slimeGridY = ((int) slime.getSlimePos().getY()) / 30;
         
-        if (slimeGridY == 0) {
+        // Check bounds before accessing neighbor cells
+        if (slimeGridY <= 0) {
             upNeighbor = 1;
         } else {
             upNeighbor = cells.get(slimeGridY - 1).get(slimeGridX);
             System.out.println("up " + upNeighbor + ", "   + cells.get(slimeGridY - 1).get(slimeGridX));
         }
-        if (slimeGridY == 20) {
+        if (slimeGridY >= 19) {
             downNeighbor = 1;
         } else {
             downNeighbor = cells.get(slimeGridY + 1).get(slimeGridX);
             System.out.println("down " + downNeighbor  + ", " + cells.get(slimeGridY + 1).get(slimeGridX));
         }
-        if (slimeGridX == 0) {
+        if (slimeGridX <= 0) {
            leftNeighbor = 1; 
         } else {
             leftNeighbor = cells.get(slimeGridY).get(slimeGridX - 1);
             System.out.println("left " + leftNeighbor  + ", " + cells.get(slimeGridY).get(slimeGridX - 1));
         }
-        if(slimeGridX == 20) {
+        if(slimeGridX >= 19) {
             rightNeighbor = 1;
         } else {
             rightNeighbor = cells.get(slimeGridY).get(slimeGridX + 1);
