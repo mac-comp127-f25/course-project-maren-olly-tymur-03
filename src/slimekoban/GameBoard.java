@@ -42,18 +42,18 @@ public class GameBoard {
      * @param yIndex call to getYGridCellLocation method from WallBlock
      */
     public void addWallBlockToGrid(Integer xIndex, Integer yIndex) {
-        cells.get((int) yIndex).add((int) xIndex, 1);
+        cells.get((int) yIndex).set((int) xIndex, 1);
     }
 
     /**
      * Takes a crate's position on the canvas and translates it to
-     * its location in the grid array system, adds it as a wall (value of 1)
+     * its location in the grid array system, adds it as a crate (value of 2)
      * to the grid array.
      * @param xIndex call to getXCrateLocation method from Crate
      * @param yIndex call to getYCrateLocation method from Crate
      */
     public void addCrateToGrid(Integer xIndex, Integer yIndex) {
-        cells.get((int) yIndex).add((int) xIndex, 2);
+        cells.get((int) yIndex).set((int) xIndex, 2);
     }
 
     public void updateSlimeNeighbors(Slime slime) {

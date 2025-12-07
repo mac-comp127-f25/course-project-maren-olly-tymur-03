@@ -14,6 +14,7 @@ public class Crate extends Rectangle {
 
     public Crate(double width, double height, Point position) {
         super(position.getX(), position.getY(), width, height);
+        this.position = position;
         setFillColor(CRATE_COLOR);
         setStrokeColor(Color.BLACK);
     }
