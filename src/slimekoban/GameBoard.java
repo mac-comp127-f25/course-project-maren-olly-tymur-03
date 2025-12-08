@@ -9,11 +9,13 @@ import edu.macalester.graphics.Point;
 public class GameBoard {
     private static boolean neighborCellAvailable;
     private List<List<Integer>> cells = new ArrayList<>();
-    //private Slime slime;
-    public Integer upNeighbor = 0;
-    public Integer downNeighbor = 0;
-    public Integer leftNeighbor = 0;
-    public Integer rightNeighbor = 0;
+    private Slime slime;
+    // public Integer upNeighbor = 0;
+    // public Integer downNeighbor = 0;
+    // public Integer leftNeighbor = 0;
+    // public Integer rightNeighbor = 0;
+    private List<Crate> crates = new ArrayList<>();
+    private List<WallBlock> wallBlocks = new ArrayList<>();
 
     public GameBoard() {
         //this.slime = slime;
@@ -26,6 +28,7 @@ public class GameBoard {
             }
         }
     }
+
 
     public List<List<Integer>> getCells() {
         return cells;
@@ -41,8 +44,9 @@ public class GameBoard {
      * @param xIndex call to getXGridCellLocation method from WallBlock
      * @param yIndex call to getYGridCellLocation method from WallBlock
      */
-    public void addWallBlockToGrid(Integer xIndex, Integer yIndex) {
+    public void addWallBlockToGrid(Integer xIndex, Integer yIndex, WallBlock wallBlock) {
         cells.get((int) yIndex).set((int) xIndex, 1);
+        wallBlocks.add(wallBlock);
     }
 
     /**
@@ -52,11 +56,12 @@ public class GameBoard {
      * @param xIndex call to getXCrateLocation method from Crate
      * @param yIndex call to getYCrateLocation method from Crate
      */
-    public void addCrateToGrid(Integer xIndex, Integer yIndex) {
+    public void addCrateToGrid(Integer xIndex, Integer yIndex, Crate crate) {
         cells.get((int) yIndex).set((int) xIndex, 2);
+        crates.add(crate);
     }
 
-    public void updateSlimeNeighbors(Slime slime) {
+    public void updateSlimeNeighbors() {
         System.out.println(slime);
         System.out.println(slime.getSlimePos().getX() / 30);
         System.out.println(slime.getSlimePos().getY() / 30);
@@ -65,47 +70,64 @@ public class GameBoard {
         
         // Check bounds before accessing neighbor cells
         if (slimeGridY <= 0) {
-            upNeighbor = 1;
+            slime.setUpNeighbor(1);
         } else {
-            upNeighbor = cells.get(slimeGridY - 1).get(slimeGridX);
-            System.out.println("up " + upNeighbor + ", "   + cells.get(slimeGridY - 1).get(slimeGridX));
+            slime.setUpNeighbor(cells.get(slimeGridY - 1).get(slimeGridX));
         }
         if (slimeGridY >= 19) {
-            downNeighbor = 1;
+            slime.setDownNeighbor(1);
         } else {
-            downNeighbor = cells.get(slimeGridY + 1).get(slimeGridX);
-            System.out.println("down " + downNeighbor  + ", " + cells.get(slimeGridY + 1).get(slimeGridX));
+            slime.setDownNeighbor(cells.get(slimeGridY + 1).get(slimeGridX));
         }
         if (slimeGridX <= 0) {
-           leftNeighbor = 1; 
+           slime.setLeftNeighbor(1); 
         } else {
-            leftNeighbor = cells.get(slimeGridY).get(slimeGridX - 1);
-            System.out.println("left " + leftNeighbor  + ", " + cells.get(slimeGridY).get(slimeGridX - 1));
+            slime.setLeftNeighbor(cells.get(slimeGridY).get(slimeGridX - 1));
         }
         if(slimeGridX >= 19) {
-            rightNeighbor = 1;
+            slime.setRightNeighbor(1);
         } else {
-            rightNeighbor = cells.get(slimeGridY).get(slimeGridX + 1);
-            System.out.println("right " + rightNeighbor + ", " + cells.get(slimeGridY).get(slimeGridX + 1));
+            slime.setRightNeighbor(cells.get(slimeGridY).get(slimeGridX + 1));
         }
     }
+
+    //NOT DONE WILL FINISH MONDAY NIGHT
+    // public void updateCrateNeighbors() {
+    //     for(Crate crate: crates) {
+    //         //what x and y
+    //         //look around
+    //         //set values based on what around
+    //         int gridX = (int) (crate.getX() / 30);
+    //         int gridY = (int) (crate.getY() / 30);
+
+    //         if(gridY <= 0) {
+    //             crate.setUpNeighbor(1);
+    //         } else {
+    //             crate.setUpNeighbor(cells.get(gridY - 1).get(gridX));
+    //         }
+    //         if(gridY >= 19) {
+    //             crate.setDownNeighbor(1);
+    //         } else {
+    //             crate.setDownNeighbor(cells.get(gridY + 1).get(gridX));
+    //         }
+    //     }
+    // }
     
+    // public Integer getUpNeighbor() {
+    //     return upNeighbor;
+    // }
 
-    public Integer getUpNeighbor() {
-        return upNeighbor;
-    }
+    // public Integer getDownNeighbor() {
+    //     return downNeighbor;
+    // }
 
-    public Integer getDownNeighbor() {
-        return downNeighbor;
-    }
+    // public Integer getLeftNeighbor() {
+    //     return leftNeighbor;
+    // }
 
-    public Integer getLeftNeighbor() {
-        return leftNeighbor;
-    }
-
-    public Integer getRightNeighbor() {
-        return rightNeighbor;
-    }
+    // public Integer getRightNeighbor() {
+    //     return rightNeighbor;
+    // }
 }
 
 //we need a convert to pixals method
