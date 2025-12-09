@@ -106,6 +106,27 @@ public class Slime {
     //     slimeRectangle.setPosition(slimePos);
     // }
     
+    // reurns the Y index of where the wall is supossed to be the the cells arraylist
+   public Integer getYGridCellLocation() {
+        Integer yIndex = Integer.valueOf((int) slimePos.getY());
+        if (yIndex >= 30) {
+            yIndex /= 30;
+        } else {
+            yIndex = 0;
+        }
+        return yIndex;
+   }
+
+   // reurns the X index of where the wall is supossed to be the the cells arraylist
+   public Integer getXGridCellLocation() {
+        Integer xIndex = Integer.valueOf((int) slimePos.getX());
+        if (xIndex >= 30) {
+            xIndex /= 30;
+        } else {
+            xIndex = 0;
+        }
+        return xIndex;
+   }
     
     public void moveLeftOnce() {
         //Integer leftNeighbor = gameBoard.getLeftNeighbor();
@@ -120,9 +141,6 @@ public class Slime {
     public void moveRightOnce() {
         //Integer rightNeighbor = gameBoard.getRightNeighbor();
         if (rightNeighbor != 1) {
-            if(rightNeighbor == 2) {
-                //gameBoard.getRightNeighbor(). crate move right
-            }
             if (slimePos.getX() < MainGame.getCANVAS_WIDTH() - SLIME_SIZE) {
                 slimePos = new Point(slimePos.getX() + SLIME_SIZE, slimePos.getY());
                 slimeRectangle.setPosition(slimePos);

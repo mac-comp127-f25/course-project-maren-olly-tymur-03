@@ -33,6 +33,13 @@ public class GameBoard {
         }
     }
 
+    public List<Crate> getCrates() {
+        return crates;
+    }
+
+    public List<WallBlock> getWallBlocks() {
+        return wallBlocks;
+    }
 
     public List<List<Integer>> getCells() {
         return cells;
@@ -41,12 +48,32 @@ public class GameBoard {
         return neighborCellAvailable;
     } 
 
+    public Object getObjectAt(int x, int y) {
+        // int gridX = x / 30;
+        // int gridY = y / 30;
+        if(cells.get(y).get(x) == 2) {
+            for(Crate crate : crates) {
+                if(crate.getX() == x && crate.getY() == y) {
+                    return crate;
+                }
+            }
+        } else if(cells.get(y).get(x) == 1) {
+            for(WallBlock wallBlock: wallBlocks) {
+                if(wallBlock.getX() == x && wallBlock.getY() == y) {
+                    return wallBlock;
+                }
+            }
+        }
+        return null;
+    }
+
     /**
      * Takes a WallBlock's position on the canvas and translates it to
      * its location in the grid array system, adds it as a wall (value of 1)
-     * to the grid array.
+     * to the grid array. also adds it to a wallblock array
      * @param xIndex call to getXGridCellLocation method from WallBlock
      * @param yIndex call to getYGridCellLocation method from WallBlock
+     * @param wallblock is a wallblock
      */
     public void addWallBlockToGrid(Integer xIndex, Integer yIndex, WallBlock wallBlock) {
         cells.get((int) yIndex).set((int) xIndex, 1);
@@ -56,9 +83,10 @@ public class GameBoard {
     /**
      * Takes a crate's position on the canvas and translates it to
      * its location in the grid array system, adds it as a crate (value of 2)
-     * to the grid array.
+     * to the grid array. also adds it to a crate List
      * @param xIndex call to getXCrateLocation method from Crate
      * @param yIndex call to getYCrateLocation method from Crate
+     * @param crate is a crate
      */
     public void addCrateToGrid(Integer xIndex, Integer yIndex, Crate crate) {
         cells.get((int) yIndex).set((int) xIndex, 2);
@@ -66,44 +94,36 @@ public class GameBoard {
     }
 
     public void updateSlimeNeighbors() {
-        System.out.println(slime);
-        System.out.println(slime.getSlimePos().getX() / 30);
-        System.out.println(slime.getSlimePos().getY() / 30);
-        int slimeGridX = ((int) slime.getSlimePos().getX()) / 30;
-        int slimeGridY = ((int) slime.getSlimePos().getY()) / 30;
-        
-        // Check bounds before accessing neighbor cells
-        if (slimeGridY <= 0) {
+        int gridX = ((int) slime.getSlimePos().getX()) / 30;
+        int gridY = ((int) slime.getSlimePos().getY()) / 30;
+        // Checks bounds before accessing neighbor cells
+        if (gridY <= 0) {
             slime.setUpNeighbor(1);
         } else {
-            slime.setUpNeighbor(cells.get(slimeGridY - 1).get(slimeGridX));
+            slime.setUpNeighbor(cells.get(gridY - 1).get(gridX));
         }
-        if (slimeGridY >= 19) {
+        if (gridY >= 19) {
             slime.setDownNeighbor(1);
         } else {
-            slime.setDownNeighbor(cells.get(slimeGridY + 1).get(slimeGridX));
+            slime.setDownNeighbor(cells.get(gridY + 1).get(gridX));
         }
-        if (slimeGridX <= 0) {
+        if (gridX <= 0) {
            slime.setLeftNeighbor(1); 
         } else {
-            slime.setLeftNeighbor(cells.get(slimeGridY).get(slimeGridX - 1));
+            slime.setLeftNeighbor(cells.get(gridY).get(gridX - 1));
         }
-        if(slimeGridX >= 19) {
+        if(gridX >= 19) {
             slime.setRightNeighbor(1);
         } else {
-            slime.setRightNeighbor(cells.get(slimeGridY).get(slimeGridX + 1));
+            slime.setRightNeighbor(cells.get(gridY).get(gridX + 1));
         }
     }
 
-    //NOT DONE WILL FINISH MONDAY NIGHT
     public void updateCrateNeighbors() {
         for(Crate crate: crates) {
-            //what x and y
-            //look around
-            //set values based on what around
             int gridX = (int) (crate.getX() / 30);
             int gridY = (int) (crate.getY() / 30);
-
+            // Checks bounds before accessing neighbor cells
             if(gridY <= 0) {
                 crate.setUpNeighbor(1);
             } else {
@@ -117,24 +137,13 @@ public class GameBoard {
             if (gridX <= 0) {
                 crate.setLeftNeighbor(1);
             } else {
-                crate
+                crate.setLeftNeighbor(cells.get(gridY).get(gridX - 1));
+            }
+            if(gridX >= 19) {
+                crate.setRightNeighbor(1);
+            } else {
+                crate.setRightNeighbor(cells.get(gridY).get(gridX + 1));
             }
         }
     }
-    
-    // public Integer getUpNeighbor() {
-    //     return upNeighbor;
-    // }
-
-    // public Integer getDownNeighbor() {
-    //     return downNeighbor;
-    // }
-
-    // public Integer getLeftNeighbor() {
-    //     return leftNeighbor;
-    // }
-
-    // public Integer getRightNeighbor() {
-    //     return rightNeighbor;
-    // }
 }
