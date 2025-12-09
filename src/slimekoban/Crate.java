@@ -86,46 +86,39 @@ public class Crate extends Rectangle {
         return xIndex;
    }
     
-//    public void moveLeftOnce() {
-//         Integer leftNeighbor = gameBoard.getLeftNeighbor();
-//         if (leftNeighbor != 1) {
-//             if (slimePos.getX() > 0) {
-//                 slimePos = new Point(slimePos.getX() - (30)SLIME_SIZE, slimePos.getY());
-//                 slimeRectangle.setPosition(slimePos);
-//             }
-//         }
-//     }
+   public void moveLeftOnce() {
+        if (leftNeighbor != 1) {
+            if (position.getX() > 0) {
+                position = new Point(position.getX() - 30, position.getY());
+                setPosition(position);
+            }
+        }
+    }
 
-    // public void moveRightOnce() {
-    //     Integer rightNeighbor = gameBoard.getRightNeighbor();
-    //     if (rightNeighbor != 1) {
-    //         if(rightNeighbor == 2) {
-    //             //gameBoard.getRightNeighbor(). crate move right
-    //         }
-    //         if (slimePos.getX() < MainGame.getCANVAS_WIDTH() - SLIME_SIZE) {
-    //             slimePos = new Point(slimePos.getX() + SLIME_SIZE, slimePos.getY());
-    //             slimeRectangle.setPosition(slimePos);
-    //         }
-    //     }
-    // }
+    public void moveRightOnce() {
+        if (rightNeighbor != 1) {
+            if (position.getX() < MainGame.getCANVAS_WIDTH() - 30) {
+                position = new Point(position.getX() + 30, position.getY());
+                setPosition(position);
+            }
+        }
+    }
 
-    // public void moveUpOnce() {
-    //     Integer upNeighbor = gameBoard.getUpNeighbor();
-    //     if (upNeighbor != 1) {
-    //         if (slimePos.getY() > 0) {
-    //             slimePos = new Point(slimePos.getX(), slimePos.getY() - SLIME_SIZE);
-    //             slimeRectangle.setPosition(slimePos);
-    //         }
-    //     }
-    // }
+    public void moveUpOnce() {
+        if (upNeighbor != 1) {
+            if (position.getY() > 0) {
+                position = new Point(position.getX(), position.getY() - 30);
+                setPosition(position);
+            }
+        }
+    }
 
-    // public void moveDownOnce() {
-    //     Integer downNeighnor = gameBoard.getDownNeighbor();
-    //     if(downNeighnor != 1) {
-    //         if (slimePos.getY() < MainGame.getCANVAS_HEIGHT() - SLIME_SIZE) {
-    //             slimePos = new Point(slimePos.getX(), slimePos.getY() + SLIME_SIZE);
-    //             slimeRectangle.setPosition(slimePos);
-    //         }
-    //     }
-    // }
+    public void moveDownOnce() {
+        if(downNeighbor != 1) {
+            if (position.getY() < MainGame.getCANVAS_HEIGHT() - 30) {
+                position = new Point(position.getX(), position.getY() + 30);
+                setPosition(position);
+            }
+        }
+    }
 }
