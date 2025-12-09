@@ -29,11 +29,11 @@ public class MainGame {
         WallBlock wall = new WallBlock(90, 0, 30, 30);
         gameBoard = new GameBoard();
         slime = new Slime(new Point (0, 0), gameBoard);
-        //gameBoard.addWallBlockToGrid(wall.getXGridCellLocation(), wall.getYGridCellLocation());  COMMENTED UNTIL I FINISH GAMEBORD
+        gameBoard.addWallBlockToGrid(wall.getXGridCellLocation(), wall.getYGridCellLocation());
         game.add(slime.getGraphics());
         game.add(wall);
         crate = new Crate(30, 30, new Point (90,30), gameBoard);
-        //gameBoard.addCrateToGrid(crate.getXCrateLocation(), crate.getYCrateLocation());  COMMENTED UNTIL I FINISH GAMEBORD
+        gameBoard.addCrateToGrid(crate.getXCrateLocation(), crate.getYCrateLocation());  
         game.add(crate);
         canvas.add(game);
         canvas.animate(() -> { // closure that runs the game loop
@@ -45,22 +45,22 @@ public class MainGame {
         // and wasn't pressed in the previous frame
 
         //COMMENTED UNTIL I FINISH GAMEBORD
-        // if (keys.contains(Key.LEFT_ARROW) && !previousKeys.contains(Key.LEFT_ARROW)) {
-        //     slime.moveLeftOnce();
-        //     gameBoard.updateSlimeNeighbors(slime);
-        // }
-        // if (keys.contains(Key.RIGHT_ARROW) && !previousKeys.contains(Key.RIGHT_ARROW)) {
-        //     slime.moveRightOnce();
-        //     gameBoard.updateSlimeNeighbors(slime);
-        // }
-        // if (keys.contains(Key.UP_ARROW) && !previousKeys.contains(Key.UP_ARROW)) {
-        //     slime.moveUpOnce();
-        //     gameBoard.updateSlimeNeighbors(slime);
-        // }
-        // if (keys.contains(Key.DOWN_ARROW) && !previousKeys.contains(Key.DOWN_ARROW)) {
-        //     slime.moveDownOnce();
-        //     gameBoard.updateSlimeNeighbors(slime);
-        // }
+        if (keys.contains(Key.LEFT_ARROW) && !previousKeys.contains(Key.LEFT_ARROW)) {
+            slime.moveLeftOnce();
+            gameBoard.updateSlimeNeighbors(slime);
+        }
+        if (keys.contains(Key.RIGHT_ARROW) && !previousKeys.contains(Key.RIGHT_ARROW)) {
+            slime.moveRightOnce();
+            gameBoard.updateSlimeNeighbors(slime);
+        }
+        if (keys.contains(Key.UP_ARROW) && !previousKeys.contains(Key.UP_ARROW)) {
+            slime.moveUpOnce();
+            gameBoard.updateSlimeNeighbors(slime);
+        }
+        if (keys.contains(Key.DOWN_ARROW) && !previousKeys.contains(Key.DOWN_ARROW)) {
+            slime.moveDownOnce();
+            gameBoard.updateSlimeNeighbors(slime);
+        }
 
         //gameBoard.updateSlimeNeighbors();
 

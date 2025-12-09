@@ -90,7 +90,7 @@ public class Crate extends Rectangle {
 //         Integer leftNeighbor = gameBoard.getLeftNeighbor();
 //         if (leftNeighbor != 1) {
 //             if (slimePos.getX() > 0) {
-//                 slimePos = new Point(slimePos.getX() - SLIME_SIZE, slimePos.getY());
+//                 slimePos = new Point(slimePos.getX() - (30)SLIME_SIZE, slimePos.getY());
 //                 slimeRectangle.setPosition(slimePos);
 //             }
 //         }

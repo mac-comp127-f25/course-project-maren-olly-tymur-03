@@ -92,26 +92,31 @@ public class GameBoard {
     }
 
     //NOT DONE WILL FINISH MONDAY NIGHT
-    // public void updateCrateNeighbors() {
-    //     for(Crate crate: crates) {
-    //         //what x and y
-    //         //look around
-    //         //set values based on what around
-    //         int gridX = (int) (crate.getX() / 30);
-    //         int gridY = (int) (crate.getY() / 30);
+    public void updateCrateNeighbors() {
+        for(Crate crate: crates) {
+            //what x and y
+            //look around
+            //set values based on what around
+            int gridX = (int) (crate.getX() / 30);
+            int gridY = (int) (crate.getY() / 30);
 
-    //         if(gridY <= 0) {
-    //             crate.setUpNeighbor(1);
-    //         } else {
-    //             crate.setUpNeighbor(cells.get(gridY - 1).get(gridX));
-    //         }
-    //         if(gridY >= 19) {
-    //             crate.setDownNeighbor(1);
-    //         } else {
-    //             crate.setDownNeighbor(cells.get(gridY + 1).get(gridX));
-    //         }
-    //     }
-    // }
+            if(gridY <= 0) {
+                crate.setUpNeighbor(1);
+            } else {
+                crate.setUpNeighbor(cells.get(gridY - 1).get(gridX));
+            }
+            if(gridY >= 19) {
+                crate.setDownNeighbor(1);
+            } else {
+                crate.setDownNeighbor(cells.get(gridY + 1).get(gridX));
+            }
+            if (gridX <= 0) {
+                crate.setLeftNeighbor(1);
+            } else {
+                crate
+            }
+        }
+    }
     
     // public Integer getUpNeighbor() {
     //     return upNeighbor;
