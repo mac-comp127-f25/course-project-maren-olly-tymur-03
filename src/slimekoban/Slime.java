@@ -24,7 +24,6 @@ public class Slime {
         slimeRectangle = new Rectangle(slimePos.getX(), slimePos.getY(), SLIME_SIZE, SLIME_SIZE);
         slimeRectangle.setFillColor(Color.WHITE);
         slimeRectangle.setStrokeColor(Color.WHITE);
-        
     }
 
     public Rectangle getGraphics() {
@@ -132,8 +131,10 @@ public class Slime {
         //Integer leftNeighbor = gameBoard.getLeftNeighbor();
         if (leftNeighbor != 1) {
             if (slimePos.getX() > 0) {
-                slimePos = new Point(slimePos.getX() - SLIME_SIZE, slimePos.getY());
-                slimeRectangle.setPosition(slimePos);
+                //if(gameBoard.getCrateAt(getXGridCellLocation() - 1, getYGridCellLocation()).getLeftNeighbor() != 1) {
+                    slimePos = new Point(slimePos.getX() - SLIME_SIZE, slimePos.getY());
+                    slimeRectangle.setPosition(slimePos);
+                //}
             }
         }
     }

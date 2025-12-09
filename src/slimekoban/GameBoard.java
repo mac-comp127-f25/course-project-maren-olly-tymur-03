@@ -16,13 +16,16 @@ import edu.macalester.graphics.Point;
 public class GameBoard {
     private static boolean neighborCellAvailable;
     private List<List<Integer>> cells = new ArrayList<>();
+    public Slime slime;
     public Integer upNeighbor = 0;
     public Integer downNeighbor = 0;
     public Integer leftNeighbor = 0;
     public Integer rightNeighbor = 0;
+    public List<Crate> crates = new ArrayList<>();
+    public List<WallBlock> wallBlocks = new ArrayList<>();
 
-    public GameBoard() {
-        //this.slime = slime;
+    public GameBoard(Slime slime) {
+        this.slime = slime;
         for(int count = 0; count < 20; count++) {
             cells.add(new ArrayList<Integer>());
         }
@@ -48,16 +51,24 @@ public class GameBoard {
         return neighborCellAvailable;
     } 
 
-    public Object getObjectAt(int x, int y) {
+    public Crate getCrateAt(int x, int y) {
         // int gridX = x / 30;
         // int gridY = y / 30;
         if(cells.get(y).get(x) == 2) {
+            System.out.println("is crate");
             for(Crate crate : crates) {
-                if(crate.getX() == x && crate.getY() == y) {
+                
+                if((crate.getX() / 30) == x && (crate.getY()) / 30 == y) {
+                    System.out.println("is THE crate");
                     return crate;
                 }
             }
-        } else if(cells.get(y).get(x) == 1) {
+        }
+        return null;
+    }
+
+    public WallBlock getWallBlockAt(int x, int y) {
+        if(cells.get(y).get(x) == 1) {
             for(WallBlock wallBlock: wallBlocks) {
                 if(wallBlock.getX() == x && wallBlock.getY() == y) {
                     return wallBlock;
@@ -91,6 +102,11 @@ public class GameBoard {
     public void addCrateToGrid(Integer xIndex, Integer yIndex, Crate crate) {
         cells.get((int) yIndex).set((int) xIndex, 2);
         crates.add(crate);
+    }
+
+    public void updateCrateInGrid(int oldX, int oldY, int newX, int newY) {
+        cells.get((int) oldY).set((int) oldX, 0);
+        cells.get((int) newY).set((int) newX, 2);
     }
 
     public void updateSlimeNeighbors() {
@@ -144,6 +160,6 @@ public class GameBoard {
             } else {
                 crate.setRightNeighbor(cells.get(gridY).get(gridX + 1));
             }
-        }
+        }   
     }
 }

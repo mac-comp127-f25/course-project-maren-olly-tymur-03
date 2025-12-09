@@ -89,8 +89,10 @@ public class Crate extends Rectangle {
    public void moveLeftOnce() {
         if (leftNeighbor != 1) {
             if (position.getX() > 0) {
-                position = new Point(position.getX() - 30, position.getY());
-                setPosition(position);
+                Point newPos = new Point(position.getX() - 30, position.getY());
+                gameBoard.updateCrateInGrid((int) position.getX() / 30, (int) position.getY() / 30, (int) newPos.getX() / 30, (int) newPos.getY() / 30);
+                position = newPos;
+                setPosition(newPos);
             }
         }
     }

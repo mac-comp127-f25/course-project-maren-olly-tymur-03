@@ -27,8 +27,8 @@ public class MainGame {
         canvas.setBackground(Color.GRAY);
         game = new GraphicsGroup();
         WallBlock wall = new WallBlock(90, 0, 30, 30);
-        gameBoard = new GameBoard();
         slime = new Slime(new Point (0, 0), gameBoard);
+        gameBoard = new GameBoard(slime);
         gameBoard.addWallBlockToGrid(wall.getXGridCellLocation(), wall.getYGridCellLocation(), wall);
         game.add(slime.getGraphics());
         game.add(wall);
@@ -46,8 +46,14 @@ public class MainGame {
 
         //COMMENTED UNTIL I FINISH GAMEBORD
         if (keys.contains(Key.LEFT_ARROW) && !previousKeys.contains(Key.LEFT_ARROW)) {
-            if(slime.getLeftNeighbor().equals(2)) {
-                gameBoard.getObjectAt(slime.getXGridCellLocation(), slime.getYGridCellLocation())
+            if(slime.getLeftNeighbor() == 2) {
+                if(gameBoard.getCrateAt(slime.getXGridCellLocation() - 1, slime.getYGridCellLocation()).getLeftNeighbor() != null) {
+                    // System.out.println(gameBoard.getCells());
+                    gameBoard.getCrateAt(slime.getXGridCellLocation() - 1, slime.getYGridCellLocation()).moveLeftOnce();
+                    // System.out.println(gameBoard.getCells());
+                }
+                // gameBoard.getCrateAt(slime.getXGridCellLocation() - 1, slime.getYGridCellLocation()).moveLeftOnce();
+                gameBoard.updateCrateNeighbors();
             }
             slime.moveLeftOnce();
             gameBoard.updateSlimeNeighbors();
