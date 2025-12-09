@@ -33,6 +33,7 @@ public class GameBoard {
         }
     }
 
+
     public List<List<Integer>> getCells() {
         return cells;
     }
@@ -47,68 +48,88 @@ public class GameBoard {
      * @param xIndex call to getXGridCellLocation method from WallBlock
      * @param yIndex call to getYGridCellLocation method from WallBlock
      */
-    public void addWallBlockToGrid(Integer xIndex, Integer yIndex) {
-        cells.get((int) yIndex).add((int) xIndex, 1);
+    public void addWallBlockToGrid(Integer xIndex, Integer yIndex, WallBlock wallBlock) {
+        cells.get((int) yIndex).set((int) xIndex, 1);
+        wallBlocks.add(wallBlock);
     }
 
     /**
      * Takes a crate's position on the canvas and translates it to
-     * its location in the grid array system, adds it as a wall (value of 1)
+     * its location in the grid array system, adds it as a crate (value of 2)
      * to the grid array.
      * @param xIndex call to getXCrateLocation method from Crate
      * @param yIndex call to getYCrateLocation method from Crate
      */
-    public void addCrateToGrid(Integer xIndex, Integer yIndex) {
-        cells.get((int) yIndex).add((int) xIndex, 2);
+    public void addCrateToGrid(Integer xIndex, Integer yIndex, Crate crate) {
+        cells.get((int) yIndex).set((int) xIndex, 2);
+        crates.add(crate);
     }
 
-    public void updateSlimeNeighbors(Slime slime) {
+    public void updateSlimeNeighbors() {
         System.out.println(slime);
         System.out.println(slime.getSlimePos().getX() / 30);
         System.out.println(slime.getSlimePos().getY() / 30);
         int slimeGridX = ((int) slime.getSlimePos().getX()) / 30;
         int slimeGridY = ((int) slime.getSlimePos().getY()) / 30;
         
-        if (slimeGridY == 0) {
-            upNeighbor = 1;
+        // Check bounds before accessing neighbor cells
+        if (slimeGridY <= 0) {
+            slime.setUpNeighbor(1);
         } else {
-            upNeighbor = cells.get(slimeGridY - 1).get(slimeGridX);
-            System.out.println("up " + upNeighbor + ", "   + cells.get(slimeGridY - 1).get(slimeGridX));
+            slime.setUpNeighbor(cells.get(slimeGridY - 1).get(slimeGridX));
         }
-        if (slimeGridY == 20) {
-            downNeighbor = 1;
+        if (slimeGridY >= 19) {
+            slime.setDownNeighbor(1);
         } else {
-            downNeighbor = cells.get(slimeGridY + 1).get(slimeGridX);
-            System.out.println("down " + downNeighbor  + ", " + cells.get(slimeGridY + 1).get(slimeGridX));
+            slime.setDownNeighbor(cells.get(slimeGridY + 1).get(slimeGridX));
         }
-        if (slimeGridX == 0) {
-           leftNeighbor = 1; 
+        if (slimeGridX <= 0) {
+           slime.setLeftNeighbor(1); 
         } else {
-            leftNeighbor = cells.get(slimeGridY).get(slimeGridX - 1);
-            System.out.println("left " + leftNeighbor  + ", " + cells.get(slimeGridY).get(slimeGridX - 1));
+            slime.setLeftNeighbor(cells.get(slimeGridY).get(slimeGridX - 1));
         }
-        if(slimeGridX == 20) {
-            rightNeighbor = 1;
+        if(slimeGridX >= 19) {
+            slime.setRightNeighbor(1);
         } else {
-            rightNeighbor = cells.get(slimeGridY).get(slimeGridX + 1);
-            System.out.println("right " + rightNeighbor + ", " + cells.get(slimeGridY).get(slimeGridX + 1));
+            slime.setRightNeighbor(cells.get(slimeGridY).get(slimeGridX + 1));
         }
     }
+
+    //NOT DONE WILL FINISH MONDAY NIGHT
+    // public void updateCrateNeighbors() {
+    //     for(Crate crate: crates) {
+    //         //what x and y
+    //         //look around
+    //         //set values based on what around
+    //         int gridX = (int) (crate.getX() / 30);
+    //         int gridY = (int) (crate.getY() / 30);
+
+    //         if(gridY <= 0) {
+    //             crate.setUpNeighbor(1);
+    //         } else {
+    //             crate.setUpNeighbor(cells.get(gridY - 1).get(gridX));
+    //         }
+    //         if(gridY >= 19) {
+    //             crate.setDownNeighbor(1);
+    //         } else {
+    //             crate.setDownNeighbor(cells.get(gridY + 1).get(gridX));
+    //         }
+    //     }
+    // }
     
+    // public Integer getUpNeighbor() {
+    //     return upNeighbor;
+    // }
 
-    public Integer getUpNeighbor() {
-        return upNeighbor;
-    }
+    // public Integer getDownNeighbor() {
+    //     return downNeighbor;
+    // }
 
-    public Integer getDownNeighbor() {
-        return downNeighbor;
-    }
+    // public Integer getLeftNeighbor() {
+    //     return leftNeighbor;
+    // }
 
-    public Integer getLeftNeighbor() {
-        return leftNeighbor;
-    }
-
-    public Integer getRightNeighbor() {
-        return rightNeighbor;
-    }
+    // public Integer getRightNeighbor() {
+    //     return rightNeighbor;
+    // }
 }
