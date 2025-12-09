@@ -8,8 +8,7 @@ public class WallBlock extends Rectangle {
     private static final Color WALL_COLOR = Color.DARK_GRAY;
     public Point position;
     
-
-
+    
     public WallBlock(double x, double y, double width, double height) {
         super(x, y, width, height);
         this.position = new Point(x, y);

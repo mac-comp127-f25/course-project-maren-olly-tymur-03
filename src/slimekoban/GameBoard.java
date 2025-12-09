@@ -5,11 +5,17 @@ import java.util.List;
 
 import edu.macalester.graphics.Point;
 
+        // 0 free, 1 wall, ~~(invalid) 2 slime~~ -> 2 crate
+
+        // tymur's edit: slime is no longer recognized 
+        // on par with non controlled objects
+
+        // olly's edit: 2 now represents a Crate object 
+
 
 public class GameBoard {
     private static boolean neighborCellAvailable;
     private List<List<Integer>> cells = new ArrayList<>();
-    //private Slime slime;
     public Integer upNeighbor = 0;
     public Integer downNeighbor = 0;
     public Integer leftNeighbor = 0;
@@ -106,16 +112,3 @@ public class GameBoard {
         return rightNeighbor;
     }
 }
-
-//we need a convert to pixals method
-
-// is there an existing cell where i want to go?
-    // can i move there?
-        // is there something in the neighbor cell?
-        // is there something in the nc's nc?
-        // 0 free, 1 wall, ~~(invalid) 2 slime~~ -> 2 crate
-
-        // tymur's edit: slime is no longer recognized 
-        // on par with non controlled objects
-
-        // olly's edit: 2 now represents a Crate object 
