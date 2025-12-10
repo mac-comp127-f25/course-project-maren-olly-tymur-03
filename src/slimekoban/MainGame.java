@@ -69,10 +69,22 @@ public class MainGame {
             gameBoard.updateSlimeNeighbors();
         }
         if (keys.contains(Key.UP_ARROW) && !previousKeys.contains(Key.UP_ARROW)) {
+            if(slime.getUpNeighbor() == 2) {
+                if(gameBoard.getCrateAt(slime.getXGridCellLocation(), slime.getYGridCellLocation() - 1).getUpNeighbor() != null) {
+                    gameBoard.getCrateAt(slime.getXGridCellLocation(), slime.getYGridCellLocation() - 1).moveUpOnce();
+                }
+                gameBoard.updateCrateNeighbors();
+            }
             slime.moveUpOnce();
             gameBoard.updateSlimeNeighbors();
         }
         if (keys.contains(Key.DOWN_ARROW) && !previousKeys.contains(Key.DOWN_ARROW)) {
+            if(slime.getDownNeighbor() == 2) {
+                if(gameBoard.getCrateAt(slime.getXGridCellLocation(), slime.getYGridCellLocation() + 1).getDownNeighbor() != null) {
+                    gameBoard.getCrateAt(slime.getXGridCellLocation(), slime.getYGridCellLocation() + 1).moveDownOnce();
+                }
+                gameBoard.updateCrateNeighbors();
+            }
             slime.moveDownOnce();
             gameBoard.updateSlimeNeighbors();
         }
