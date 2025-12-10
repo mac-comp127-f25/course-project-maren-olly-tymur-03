@@ -3,7 +3,7 @@ package slimekoban;
 import java.awt.Color;
 import edu.macalester.graphics.Point;
 import edu.macalester.graphics.Rectangle;
-
+import edu.macalester.graphics.Image;
 
 
 public class Slime {
@@ -16,18 +16,23 @@ public class Slime {
     public Integer downNeighbor = 0;
     public Integer leftNeighbor = 0;
     public Integer rightNeighbor = 0;
+    public Image slimeImage;
     
 
     public Slime(Point slimePos, GameBoard gameBoard) {
         this.slimePos = slimePos;
         this.gameBoard = gameBoard;
-        slimeRectangle = new Rectangle(slimePos.getX(), slimePos.getY(), SLIME_SIZE, SLIME_SIZE);
-        slimeRectangle.setFillColor(Color.WHITE);
-        slimeRectangle.setStrokeColor(Color.WHITE);
+        slimeImage = new Image(slimePos.getX(), slimePos.getY(), "slime.png");
+        slimeImage.setMaxWidth(SLIME_SIZE);
+        slimeImage.setMaxHeight(SLIME_SIZE);
+        // slimeRectangle = new Rectangle(slimePos.getX(), slimePos.getY(), SLIME_SIZE, SLIME_SIZE);
+        // slimeRectangle.setFillColor(Color.WHITE);
+        // slimeRectangle.setStrokeColor(Color.WHITE);
     }
 
-    public Rectangle getGraphics() {
-        return slimeRectangle;
+    public Image getGraphics() {
+        //return slimeRectangle;
+        return slimeImage;
     }
 
     public Point getSlimePos() {
@@ -133,7 +138,7 @@ public class Slime {
             if (slimePos.getX() > 0) {
                 //if(gameBoard.getCrateAt(getXGridCellLocation() - 1, getYGridCellLocation()).getLeftNeighbor() != 1) {
                     slimePos = new Point(slimePos.getX() - SLIME_SIZE, slimePos.getY());
-                    slimeRectangle.setPosition(slimePos);
+                    slimeImage.setPosition(slimePos);
                 //}
             }
         }
@@ -144,7 +149,7 @@ public class Slime {
         if (rightNeighbor != 1) {
             if (slimePos.getX() < MainGame.getCANVAS_WIDTH() - SLIME_SIZE) {
                 slimePos = new Point(slimePos.getX() + SLIME_SIZE, slimePos.getY());
-                slimeRectangle.setPosition(slimePos);
+                slimeImage.setPosition(slimePos);
             }
         }
     }
@@ -154,7 +159,7 @@ public class Slime {
         if (upNeighbor != 1) {
             if (slimePos.getY() > 0) {
                 slimePos = new Point(slimePos.getX(), slimePos.getY() - SLIME_SIZE);
-                slimeRectangle.setPosition(slimePos);
+                slimeImage.setPosition(slimePos);
             }
         }
     }
@@ -164,7 +169,7 @@ public class Slime {
         if(downNeighbor != 1) {
             if (slimePos.getY() < MainGame.getCANVAS_HEIGHT() - SLIME_SIZE) {
                 slimePos = new Point(slimePos.getX(), slimePos.getY() + SLIME_SIZE);
-                slimeRectangle.setPosition(slimePos);
+                slimeImage.setPosition(slimePos);
             }
         }
     }
