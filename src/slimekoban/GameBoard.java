@@ -52,14 +52,9 @@ public class GameBoard {
     } 
 
     public Crate getCrateAt(int x, int y) {
-        // int gridX = x / 30;
-        // int gridY = y / 30;
         if(cells.get(y).get(x) == 2) {
-            System.out.println("is crate");
             for(Crate crate : crates) {
-                
                 if((crate.getX() / 30) == x && (crate.getY()) / 30 == y) {
-                    System.out.println("is THE crate");
                     return crate;
                 }
             }

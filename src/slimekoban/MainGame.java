@@ -59,6 +59,12 @@ public class MainGame {
             gameBoard.updateSlimeNeighbors();
         }
         if (keys.contains(Key.RIGHT_ARROW) && !previousKeys.contains(Key.RIGHT_ARROW)) {
+            if(slime.getRightNeighbor() == 2) {
+                if(gameBoard.getCrateAt(slime.getXGridCellLocation() + 1, slime.getYGridCellLocation()).getRightNeighbor() != null) {
+                    gameBoard.getCrateAt(slime.getXGridCellLocation() + 1, slime.getYGridCellLocation()).moveRightOnce();
+                }
+                gameBoard.updateCrateNeighbors();
+            }
             slime.moveRightOnce();
             gameBoard.updateSlimeNeighbors();
         }

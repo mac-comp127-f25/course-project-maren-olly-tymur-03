@@ -100,8 +100,10 @@ public class Crate extends Rectangle {
     public void moveRightOnce() {
         if (rightNeighbor != 1) {
             if (position.getX() < MainGame.getCANVAS_WIDTH() - 30) {
-                position = new Point(position.getX() + 30, position.getY());
-                setPosition(position);
+                Point newPos = new Point(position.getX() + 30, position.getY());
+                gameBoard.updateCrateInGrid((int) position.getX() / 30, (int) position.getY() / 30, (int) newPos.getX() / 30, (int) newPos.getY() / 30);
+                position = newPos;
+                setPosition(newPos);
             }
         }
     }
@@ -109,8 +111,10 @@ public class Crate extends Rectangle {
     public void moveUpOnce() {
         if (upNeighbor != 1) {
             if (position.getY() > 0) {
-                position = new Point(position.getX(), position.getY() - 30);
-                setPosition(position);
+                Point newPos = new Point(position.getX(), position.getY() - 30);
+                gameBoard.updateCrateInGrid((int) position.getX() / 30, (int) position.getY() / 30, (int) newPos.getX() / 30, (int) newPos.getY() / 30);
+                position = newPos;
+                setPosition(newPos);
             }
         }
     }
@@ -118,8 +122,10 @@ public class Crate extends Rectangle {
     public void moveDownOnce() {
         if(downNeighbor != 1) {
             if (position.getY() < MainGame.getCANVAS_HEIGHT() - 30) {
-                position = new Point(position.getX(), position.getY() + 30);
-                setPosition(position);
+                Point newPos = new Point(position.getX(), position.getY() + 30);
+                gameBoard.updateCrateInGrid((int) position.getX() / 30, (int) position.getY() / 30, (int) newPos.getX() / 30, (int) newPos.getY() / 30);
+                position = newPos;
+                setPosition(newPos);
             }
         }
     }
