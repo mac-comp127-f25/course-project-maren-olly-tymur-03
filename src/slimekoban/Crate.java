@@ -1,9 +1,6 @@
 package slimekoban;
 
-import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.Rectangle;
-
-import java.awt.Canvas;
 import java.awt.Color;
 import edu.macalester.graphics.Point;
 

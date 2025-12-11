@@ -26,7 +26,7 @@ public class MainGame {
         canvas = new CanvasWindow("Slimekoban!", (int) CANVAS_WIDTH, (int) CANVAS_HEIGHT);
         canvas.setBackground(Color.GRAY);
         game = new GraphicsGroup();
-        slime = new Slime(new Point (0, 0), gameBoard);
+        slime = new Slime(new Point (0, 0));
         gameBoard = new GameBoard(slime);
         game.add(slime.getGraphics());
         makeMaze();
@@ -127,7 +127,7 @@ public class MainGame {
     public void resetGame() {
         game.removeAll();
         game = new GraphicsGroup();
-        slime = new Slime(new Point (0, 0), gameBoard);
+        slime = new Slime(new Point (0, 0));
         gameBoard = new GameBoard(slime);
         game.add(slime.getGraphics());
         makeMaze();

@@ -3,18 +3,7 @@ package slimekoban;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.macalester.graphics.Point;
-
-        // 0 free, 1 wall, ~~(invalid) 2 slime~~ -> 2 crate
-
-        // tymur's edit: slime is no longer recognized 
-        // on par with non controlled objects
-
-        // olly's edit: 2 now represents a Crate object 
-
-
 public class GameBoard {
-    private static boolean neighborCellAvailable;
     private List<List<Integer>> cells = new ArrayList<>();
     public Slime slime;
     public Integer upNeighbor = 0;
@@ -47,9 +36,6 @@ public class GameBoard {
     public List<List<Integer>> getCells() {
         return cells;
     }
-    public boolean checkCellAvailability() {
-        return neighborCellAvailable;
-    } 
 
     public Crate getCrateAt(int x, int y) {
         if(cells.get(y).get(x) == 2) {

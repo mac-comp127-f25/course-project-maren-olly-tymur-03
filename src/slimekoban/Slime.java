@@ -1,17 +1,12 @@
 package slimekoban;
 
-import java.awt.Color;
 import edu.macalester.graphics.Point;
-import edu.macalester.graphics.Rectangle;
 import edu.macalester.graphics.Image;
 
 
 public class Slime {
     private Point slimePos;
     private final double SLIME_SIZE = 30;
-    private Rectangle slimeRectangle;
-    private boolean moveLeft, moveRight, moveUp, moveDown;
-    private GameBoard gameBoard;
     public Integer upNeighbor = 0;
     public Integer downNeighbor = 0;
     public Integer leftNeighbor = 0;
@@ -19,19 +14,14 @@ public class Slime {
     public Image slimeImage;
     
 
-    public Slime(Point slimePos, GameBoard gameBoard) {
+    public Slime(Point slimePos) {
         this.slimePos = slimePos;
-        this.gameBoard = gameBoard;
         slimeImage = new Image(slimePos.getX(), slimePos.getY(), "slime.png");
         slimeImage.setMaxWidth(SLIME_SIZE);
         slimeImage.setMaxHeight(SLIME_SIZE);
-        // slimeRectangle = new Rectangle(slimePos.getX(), slimePos.getY(), SLIME_SIZE, SLIME_SIZE);
-        // slimeRectangle.setFillColor(Color.WHITE);
-        // slimeRectangle.setStrokeColor(Color.WHITE);
     }
 
     public Image getGraphics() {
-        //return slimeRectangle;
         return slimeImage;
     }
 
@@ -41,22 +31,6 @@ public class Slime {
 
     public void setSlimePos(Point slimePos) {
         this.slimePos = slimePos;
-    }
-
-    public void setMoveLeft(boolean moveLeft) {
-        this.moveLeft = moveLeft;
-    }
-
-    public void setMoveRight(boolean moveRight) {
-        this.moveRight = moveRight;
-    }
-
-    public void setMoveUp(boolean moveUp) {
-        this.moveUp = moveUp;
-    }
-
-    public void setMoveDown(boolean moveDown) {
-        this.moveDown = moveDown;
     }
 
     public Integer getDownNeighbor() {
@@ -113,7 +87,6 @@ public class Slime {
    }
     
     public void moveLeftOnce() {
-        //Integer leftNeighbor = gameBoard.getLeftNeighbor();
         if (leftNeighbor != 1) {
             if (slimePos.getX() > 0) {
                     slimePos = new Point(slimePos.getX() - SLIME_SIZE, slimePos.getY());
@@ -123,7 +96,6 @@ public class Slime {
     }
 
     public void moveRightOnce() {
-        //Integer rightNeighbor = gameBoard.getRightNeighbor();
         if (rightNeighbor != 1) {
             if (slimePos.getX() < MainGame.getCANVAS_WIDTH() - SLIME_SIZE) {
                 slimePos = new Point(slimePos.getX() + SLIME_SIZE, slimePos.getY());
@@ -133,7 +105,6 @@ public class Slime {
     }
 
     public void moveUpOnce() {
-        //Integer upNeighbor = gameBoard.getUpNeighbor();
         if (upNeighbor != 1) {
             if (slimePos.getY() > 0) {
                 slimePos = new Point(slimePos.getX(), slimePos.getY() - SLIME_SIZE);
@@ -143,7 +114,6 @@ public class Slime {
     }
 
     public void moveDownOnce() {
-        //Integer downNeighnor = gameBoard.getDownNeighbor();
         if(downNeighbor != 1) {
             if (slimePos.getY() < MainGame.getCANVAS_HEIGHT() - SLIME_SIZE) {
                 slimePos = new Point(slimePos.getX(), slimePos.getY() + SLIME_SIZE);
