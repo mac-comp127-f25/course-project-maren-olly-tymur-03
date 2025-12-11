@@ -12,93 +12,94 @@ public class MainGame {
     private static final double CANVAS_HEIGHT = 600;
     private static final double CANVAS_WIDTH = 600; 
     private Slime slime;
-    private Crate crate;
     private GraphicsGroup game;
     private CanvasWindow canvas;
     private GameBoard gameBoard;
     private Set<Key> previousKeys = new HashSet<>();
 
     public static void main(String[] args){
-        new MainGame();
+        MainGame mainGame = new MainGame();
+        mainGame.run();
     }
 
     public MainGame() {
-        CanvasWindow canvas = new CanvasWindow("Slimekoban!", (int) CANVAS_WIDTH, (int) CANVAS_HEIGHT);
+        canvas = new CanvasWindow("Slimekoban!", (int) CANVAS_WIDTH, (int) CANVAS_HEIGHT);
         canvas.setBackground(Color.GRAY);
         game = new GraphicsGroup();
-        WallBlock wall = new WallBlock(90, 0, 30, 30);
         slime = new Slime(new Point (0, 0), gameBoard);
         gameBoard = new GameBoard(slime);
-        gameBoard.addWallBlockToGrid(wall.getXGridCellLocation(), wall.getYGridCellLocation(), wall);
         game.add(slime.getGraphics());
-        game.add(wall);
-        crate = new Crate(30, 30, new Point (90,30), gameBoard);
-        gameBoard.addCrateToGrid(crate.getXCrateLocation(), crate.getYCrateLocation(), crate);  
-        game.add(crate);
-        canvas.add(game);
-        canvas.animate(() -> { // closure that runs the game loop
+        makeMaze();
+        canvas.add(game); 
+    }
 
+    public void left() {
+        if(slime.getLeftNeighbor() == 2) {
+            if(gameBoard.getCrateAt(slime.getXGridCellLocation() - 1, slime.getYGridCellLocation()).getLeftNeighbor() != null) {
+                if(gameBoard.getCrateAt(slime.getXGridCellLocation() - 1, slime.getYGridCellLocation()).getXCrateLocation() == 0) {
+                    resetGame();
+                }
+                gameBoard.getCrateAt(slime.getXGridCellLocation() - 1, slime.getYGridCellLocation()).moveLeftOnce();
+            }
+            gameBoard.updateCrateNeighbors();
+        }
+        slime.moveLeftOnce();
+        gameBoard.updateSlimeNeighbors();
+    }
+
+    public void right() {
+        if(slime.getRightNeighbor() == 2) {
+            if(gameBoard.getCrateAt(slime.getXGridCellLocation() + 1, slime.getYGridCellLocation()).getRightNeighbor() != null) {
+                gameBoard.getCrateAt(slime.getXGridCellLocation() + 1, slime.getYGridCellLocation()).moveRightOnce();
+            }
+            gameBoard.updateCrateNeighbors();
+        }
+        slime.moveRightOnce();
+        gameBoard.updateSlimeNeighbors();
+    }
+
+    public void up() {
+        if(slime.getUpNeighbor() == 2) {
+            if(gameBoard.getCrateAt(slime.getXGridCellLocation(), slime.getYGridCellLocation() - 1).getUpNeighbor() != null) {
+                gameBoard.getCrateAt(slime.getXGridCellLocation(), slime.getYGridCellLocation() - 1).moveUpOnce();
+            }
+            gameBoard.updateCrateNeighbors();
+        }
+        slime.moveUpOnce();
+        gameBoard.updateSlimeNeighbors();
+    }
+
+    public void down() {
+        if(slime.getDownNeighbor() == 2) {
+            if(gameBoard.getCrateAt(slime.getXGridCellLocation(), slime.getYGridCellLocation() + 1).getDownNeighbor() != null) {
+                gameBoard.getCrateAt(slime.getXGridCellLocation(), slime.getYGridCellLocation() + 1).moveDownOnce();
+            }
+            gameBoard.updateCrateNeighbors();
+        }
+        slime.moveDownOnce();
+        gameBoard.updateSlimeNeighbors();
+    }
+
+    public void run() {
+        canvas.animate(() -> { // closure that runs the game loop
         // slime movement controls: trigger one move per key press (no holding)
         Set<Key> keys = canvas.getKeysPressed();
-
-        // the conditional checks if the key is currently pressed 
-        // and wasn't pressed in the previous frame
-
-        //COMMENTED UNTIL I FINISH GAMEBORD
         if (keys.contains(Key.LEFT_ARROW) && !previousKeys.contains(Key.LEFT_ARROW)) {
-            if(slime.getLeftNeighbor() == 2) {
-                if(gameBoard.getCrateAt(slime.getXGridCellLocation() - 1, slime.getYGridCellLocation()).getLeftNeighbor() != null) {
-                    // System.out.println(gameBoard.getCells());
-                    gameBoard.getCrateAt(slime.getXGridCellLocation() - 1, slime.getYGridCellLocation()).moveLeftOnce();
-                    // System.out.println(gameBoard.getCells());
-                }
-                // gameBoard.getCrateAt(slime.getXGridCellLocation() - 1, slime.getYGridCellLocation()).moveLeftOnce();
-                gameBoard.updateCrateNeighbors();
-            }
-            slime.moveLeftOnce();
-            gameBoard.updateSlimeNeighbors();
+            left();
         }
         if (keys.contains(Key.RIGHT_ARROW) && !previousKeys.contains(Key.RIGHT_ARROW)) {
-            if(slime.getRightNeighbor() == 2) {
-                if(gameBoard.getCrateAt(slime.getXGridCellLocation() + 1, slime.getYGridCellLocation()).getRightNeighbor() != null) {
-                    gameBoard.getCrateAt(slime.getXGridCellLocation() + 1, slime.getYGridCellLocation()).moveRightOnce();
-                }
-                gameBoard.updateCrateNeighbors();
-            }
-            slime.moveRightOnce();
-            gameBoard.updateSlimeNeighbors();
+            right();
         }
         if (keys.contains(Key.UP_ARROW) && !previousKeys.contains(Key.UP_ARROW)) {
-            if(slime.getUpNeighbor() == 2) {
-                if(gameBoard.getCrateAt(slime.getXGridCellLocation(), slime.getYGridCellLocation() - 1).getUpNeighbor() != null) {
-                    gameBoard.getCrateAt(slime.getXGridCellLocation(), slime.getYGridCellLocation() - 1).moveUpOnce();
-                }
-                gameBoard.updateCrateNeighbors();
-            }
-            slime.moveUpOnce();
-            gameBoard.updateSlimeNeighbors();
+            up();
         }
         if (keys.contains(Key.DOWN_ARROW) && !previousKeys.contains(Key.DOWN_ARROW)) {
-            if(slime.getDownNeighbor() == 2) {
-                if(gameBoard.getCrateAt(slime.getXGridCellLocation(), slime.getYGridCellLocation() + 1).getDownNeighbor() != null) {
-                    gameBoard.getCrateAt(slime.getXGridCellLocation(), slime.getYGridCellLocation() + 1).moveDownOnce();
-                }
-                gameBoard.updateCrateNeighbors();
-            }
-            slime.moveDownOnce();
-            gameBoard.updateSlimeNeighbors();
+            down();
         }
-
-        //gameBoard.updateSlimeNeighbors();
-
         // update previousKeys for edge detection
         previousKeys.clear();
         previousKeys.addAll(keys);
         });
-    }
-
-    public void run() {
-        
     }
 
     public static double getCANVAS_HEIGHT() {
@@ -112,9 +113,23 @@ public class MainGame {
     public GameBoard getGameBoard() {
         return gameBoard;
     }
+    
+    public void makeMaze() {
+        WallBlock wall = new WallBlock(90, 0, 30, 30);
+        gameBoard.addWallBlockToGrid(wall.getXGridCellLocation(), wall.getYGridCellLocation(), wall);
+        game.add(wall);
+        Crate crate = new Crate(30, 30, new Point (90,30), gameBoard);
+        gameBoard.addCrateToGrid(crate.getXCrateLocation(), crate.getYCrateLocation(), crate);  
+        //OLLY ADD STUFF HERE PLZ :)
+        game.add(crate);
+    }
 
-    // public Crate getCrate() {
-    //     return crate;
-    // }
-
+    public void resetGame() {
+        game.removeAll();
+        game = new GraphicsGroup();
+        slime = new Slime(new Point (0, 0), gameBoard);
+        gameBoard = new GameBoard(slime);
+        game.add(slime.getGraphics());
+        makeMaze();
+    }
 }

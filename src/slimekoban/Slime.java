@@ -89,26 +89,6 @@ public class Slime {
     public void setUpNeighbor(Integer upNeighbor) {
         this.upNeighbor = upNeighbor;
     }
-    // public void update() {
-    //     if (moveLeft) {
-    //         if (slimePos.getX() > 0)
-    //         slimePos = new Point(slimePos.getX() - 30, slimePos.getY());
-    //     }
-    //     if (moveRight) {
-    //         if (slimePos.getX() < MainGame.getCANVAS_WIDTH() - SLIME_SIZE)
-    //         slimePos = new Point(slimePos.getX() + 30, slimePos.getY());
-    //     }
-    //     if (moveUp) {
-    //         if (slimePos.getY() > 0)
-    //         slimePos = new Point(slimePos.getX(), slimePos.getY() - 30);
-    //     }
-    //     if (moveDown) {
-    //         if (slimePos.getY() < 600)
-    //         slimePos = new Point(slimePos.getX(), slimePos.getY() + 30);
-    //         System.out.println(slimePos.getY());
-    //     }
-    //     slimeRectangle.setPosition(slimePos);
-    // }
     
     // reurns the Y index of where the wall is supossed to be the the cells arraylist
    public Integer getYGridCellLocation() {
@@ -136,10 +116,8 @@ public class Slime {
         //Integer leftNeighbor = gameBoard.getLeftNeighbor();
         if (leftNeighbor != 1) {
             if (slimePos.getX() > 0) {
-                //if(gameBoard.getCrateAt(getXGridCellLocation() - 1, getYGridCellLocation()).getLeftNeighbor() != 1) {
                     slimePos = new Point(slimePos.getX() - SLIME_SIZE, slimePos.getY());
                     slimeImage.setPosition(slimePos);
-                //}
             }
         }
     }
