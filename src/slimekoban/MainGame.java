@@ -58,53 +58,89 @@ public class MainGame {
         gameBoard = new GameBoard(slime);
         game.add(slime.getGraphics());
         makeMaze(defaultMap);
+        // initialize neighbor info after maze created
+        gameBoard.updateCrateNeighbors();
+        gameBoard.updateSlimeNeighbors();
         canvas.add(game); 
     }
 
     public void left() {
         if(slime.getLeftNeighbor() == 2) {
             Crate crate = gameBoard.getCrateAt(slime.getXGridCellLocation() - 1, slime.getYGridCellLocation());
-            if(crate != null && crate.getLeftNeighbor() != null) {
-                if(crate.getGridX() == 0) {
+            if (crate != null) {
+                int targetX = crate.getGridX() - 1;
+                int targetY = crate.getGridY();
+                // if crate would be pushed off the left edge -> reset
+                if (targetX < 0) {
                     resetGame();
+                } else if (gameBoard.isCellFree(targetX, targetY)) {
+                    crate.moveLeftOnce();
+                    gameBoard.updateCrateNeighbors();
                 }
-                crate.moveLeftOnce();
             }
-            gameBoard.updateCrateNeighbors();
         }
+        // Ensure slime neighbor info reflects any crate movement
+        gameBoard.updateSlimeNeighbors();
         slime.moveLeftOnce();
         gameBoard.updateSlimeNeighbors();
     }
 
     public void right() {
         if(slime.getRightNeighbor() == 2) {
-            if(gameBoard.getCrateAt(slime.getXGridCellLocation() + 1, slime.getYGridCellLocation()).getRightNeighbor() != null) {
-                gameBoard.getCrateAt(slime.getXGridCellLocation() + 1, slime.getYGridCellLocation()).moveRightOnce();
+            Crate crate = gameBoard.getCrateAt(slime.getXGridCellLocation() + 1, slime.getYGridCellLocation());
+            if (crate != null) {
+                int targetX = crate.getGridX() + 1;
+                int targetY = crate.getGridY();
+                if (targetX >= (int)(MainGame.getCANVAS_WIDTH() / MainGame.CELL_SIZE)) {
+                    resetGame();
+                } else if (gameBoard.isCellFree(targetX, targetY)) {
+                    crate.moveRightOnce();
+                    gameBoard.updateCrateNeighbors();
+                }
             }
-            gameBoard.updateCrateNeighbors();
         }
+        // Ensure slime neighbor info reflects any crate movement
+        gameBoard.updateSlimeNeighbors();
         slime.moveRightOnce();
         gameBoard.updateSlimeNeighbors();
     }
 
     public void up() {
         if(slime.getUpNeighbor() == 2) {
-            if(gameBoard.getCrateAt(slime.getXGridCellLocation(), slime.getYGridCellLocation() - 1).getUpNeighbor() != null) {
-                gameBoard.getCrateAt(slime.getXGridCellLocation(), slime.getYGridCellLocation() - 1).moveUpOnce();
+            Crate crate = gameBoard.getCrateAt(slime.getXGridCellLocation(), slime.getYGridCellLocation() - 1);
+            if (crate != null) {
+                int targetX = crate.getGridX();
+                int targetY = crate.getGridY() - 1;
+                if (targetY < 0) {
+                    resetGame();
+                } else if (gameBoard.isCellFree(targetX, targetY)) {
+                    crate.moveUpOnce();
+                    gameBoard.updateCrateNeighbors();
+                }
             }
-            gameBoard.updateCrateNeighbors();
         }
+        // Ensure slime neighbor info reflects any crate movement
+        gameBoard.updateSlimeNeighbors();
         slime.moveUpOnce();
         gameBoard.updateSlimeNeighbors();
     }
 
     public void down() {
         if(slime.getDownNeighbor() == 2) {
-            if(gameBoard.getCrateAt(slime.getXGridCellLocation(), slime.getYGridCellLocation() + 1).getDownNeighbor() != null) {
-                gameBoard.getCrateAt(slime.getXGridCellLocation(), slime.getYGridCellLocation() + 1).moveDownOnce();
+            Crate crate = gameBoard.getCrateAt(slime.getXGridCellLocation(), slime.getYGridCellLocation() + 1);
+            if (crate != null) {
+                int targetX = crate.getGridX();
+                int targetY = crate.getGridY() + 1;
+                if (targetY >= (int)(MainGame.getCANVAS_HEIGHT() / MainGame.CELL_SIZE)) {
+                    resetGame();
+                } else if (gameBoard.isCellFree(targetX, targetY)) {
+                    crate.moveDownOnce();
+                    gameBoard.updateCrateNeighbors();
+                }
             }
-            gameBoard.updateCrateNeighbors();
         }
+        // Ensure slime neighbor info reflects any crate movement
+        gameBoard.updateSlimeNeighbors();
         slime.moveDownOnce();
         gameBoard.updateSlimeNeighbors();
     }

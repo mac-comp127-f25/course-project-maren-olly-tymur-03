@@ -69,6 +69,8 @@ public class Crate extends Rectangle {
         if (leftNeighbor != 1 && getX() > 0) {
             Point newPos = new Point(getX() - MainGame.CELL_SIZE, getY());
             gameBoard.updateCrateInGrid(gridX, gridY, gridX - 1, gridY);
+            // update internal grid coords and visual position
+            gridX = gridX - 1;
             setPosition(newPos);
         }
     }
@@ -77,6 +79,8 @@ public class Crate extends Rectangle {
         if (rightNeighbor != 1 && getX() < MainGame.getCANVAS_WIDTH() - MainGame.CELL_SIZE) {
             Point newPos = new Point(getX() + MainGame.CELL_SIZE, getY());
             gameBoard.updateCrateInGrid(gridX, gridY, gridX + 1, gridY);
+            // update internal grid coords and visual position
+            gridX = gridX + 1;
             setPosition(newPos);
         }
     }
@@ -86,6 +90,8 @@ public class Crate extends Rectangle {
             if (getY() > 0) {
                 Point newPos = new Point(getX(), getY() - MainGame.CELL_SIZE);
                 gameBoard.updateCrateInGrid(gridX, gridY, gridX, gridY - 1);
+                // update internal grid coords and visual position
+                gridY = gridY - 1;
                 setPosition(newPos);
             }
         }
@@ -96,6 +102,8 @@ public class Crate extends Rectangle {
             if (getY() < MainGame.getCANVAS_HEIGHT() - MainGame.CELL_SIZE) {
                 Point newPos = new Point(getX(), getY() + MainGame.CELL_SIZE);
                 gameBoard.updateCrateInGrid(gridX, gridY, gridX, gridY + 1);
+                // update internal grid coords and visual position
+                gridY = gridY + 1;
                 setPosition(newPos);
             }
         }

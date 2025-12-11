@@ -40,7 +40,7 @@ public class GameBoard {
     public Crate getCrateAt(int x, int y) {
         if(cells.get(y).get(x) == 2) {
             for(Crate crate : crates) {
-                if((crate.getX() / 30) == x && (crate.getY()) / 30 == y) {
+                if(crate.getGridX() == x && crate.getGridY() == y) {
                     return crate;
                 }
             }
@@ -88,6 +88,15 @@ public class GameBoard {
     public void updateCrateInGrid(int oldX, int oldY, int newX, int newY) {
         cells.get((int) oldY).set((int) oldX, 0);
         cells.get((int) newY).set((int) newX, 2);
+    }
+
+    /**
+     * Returns true if the cell at (x,y) is within bounds and currently empty (0).
+     */
+    public boolean isCellFree(int x, int y) {
+        if (x < 0 || y < 0) return false;
+        if (y >= cells.size() || x >= cells.get(0).size()) return false;
+        return cells.get(y).get(x) == 0;
     }
 
     public void updateSlimeNeighbors() {
