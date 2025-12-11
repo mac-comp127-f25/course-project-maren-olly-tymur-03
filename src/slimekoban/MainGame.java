@@ -3,19 +3,47 @@ package slimekoban;
 import java.awt.Color;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.List;
+
 import edu.macalester.graphics.events.Key;
 import edu.macalester.graphics.CanvasWindow;
 import edu.macalester.graphics.Point;
 import edu.macalester.graphics.GraphicsGroup;
 
 public class MainGame {
-    private static final double CANVAS_HEIGHT = 600;
-    private static final double CANVAS_WIDTH = 600; 
+    public static final double CELL_SIZE = 30;
+    private static final double CANVAS_HEIGHT = CELL_SIZE * 20;
+    private static final double CANVAS_WIDTH = CELL_SIZE * 20;
     private Slime slime;
     private GraphicsGroup game;
     private CanvasWindow canvas;
     private GameBoard gameBoard;
     private Set<Key> previousKeys = new HashSet<>();
+    // X = wallblock
+    // [ ] = free space
+    // c = crate
+    private List<String> defaultMap = List.of(
+        "XXXXXXXXXX XXXXXXXXX",
+        "X    X   C X C     X",
+        "X XXXX XXX X C X XXX",
+        "X  X   X   X C X   X",
+        "XX X XXX XXX C XXX X",
+        "XX X X     X C X   X",
+        "XX  CXXXXX   C X XXX",
+        "XXXX X   XXXXXXX X X",
+        "X  X X C  X    X X X",
+        "X  XXX XXXX  X   X X",
+        "X    C       X C X X",
+        "XXXX X XXXXXXX XXX X",
+        "X X  X       X X   X",
+        "X X  XXXXX C XC  X X",
+        "X    X   X   X  XX X",
+        "X  XCXXX XXXXX   X X",
+        "X  X         XXXXX X",
+        "X XX XXXX      C   X",
+        "X       X    C   C X",
+        "XXXXXXXXX XXXXXXXXXX"
+    );
 
     public static void main(String[] args){
         MainGame mainGame = new MainGame();
@@ -26,10 +54,10 @@ public class MainGame {
         canvas = new CanvasWindow("Slimekoban!", (int) CANVAS_WIDTH, (int) CANVAS_HEIGHT);
         canvas.setBackground(Color.GRAY);
         game = new GraphicsGroup();
-        slime = new Slime(new Point (0, 0));
+        slime = new Slime(new Point (CELL_SIZE * 10, 0));
         gameBoard = new GameBoard(slime);
         game.add(slime.getGraphics());
-        makeMaze();
+        makeMaze(defaultMap);
         canvas.add(game); 
     }
 
@@ -37,7 +65,7 @@ public class MainGame {
         if(slime.getLeftNeighbor() == 2) {
             Crate crate = gameBoard.getCrateAt(slime.getXGridCellLocation() - 1, slime.getYGridCellLocation());
             if(crate != null && crate.getLeftNeighbor() != null) {
-                if(crate.getXCrateLocation() == 0) {
+                if(crate.getGridX() == 0) {
                     resetGame();
                 }
                 crate.moveLeftOnce();
@@ -114,15 +142,23 @@ public class MainGame {
     public GameBoard getGameBoard() {
         return gameBoard;
     }
-    
-    public void makeMaze() {
-        WallBlock wall = new WallBlock(90, 0, 30, 30);
-        gameBoard.addWallBlockToGrid(wall.getXGridCellLocation(), wall.getYGridCellLocation(), wall);
-        game.add(wall);
-        Crate crate = new Crate(30, 30, new Point (90,30), gameBoard);
-        gameBoard.addCrateToGrid(crate.getXCrateLocation(), crate.getYCrateLocation(), crate);  
-        //OLLY ADD STUFF HERE PLZ :)
-        game.add(crate);
+
+    public void makeMaze(List<String> map) {
+        for (int row = 0; row < map.size(); row++) {
+            String rowData = map.get(row);
+            for (int col = 0; col < rowData.length(); col++) {
+                char c = rowData.charAt(col);
+                if (c == 'X') {
+                    WallBlock wall = new WallBlock(col, row);
+                    gameBoard.addWallBlockToGrid(wall);
+                    game.add(wall);
+                } else if (c == 'C') {
+                    Crate crate = new Crate(col, row, gameBoard);
+                    gameBoard.addCrateToGrid(crate);
+                    game.add(crate);
+                }
+            }
+        }
     }
 
     public void resetGame() {
@@ -131,6 +167,6 @@ public class MainGame {
         slime = new Slime(new Point (0, 0));
         gameBoard = new GameBoard(slime);
         game.add(slime.getGraphics());
-        makeMaze();
+        makeMaze(defaultMap);
     }
 }

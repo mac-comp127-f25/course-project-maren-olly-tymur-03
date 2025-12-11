@@ -67,8 +67,8 @@ public class GameBoard {
      * @param yIndex call to getYGridCellLocation method from WallBlock
      * @param wallblock is a wallblock
      */
-    public void addWallBlockToGrid(Integer xIndex, Integer yIndex, WallBlock wallBlock) {
-        cells.get((int) yIndex).set((int) xIndex, 1);
+    public void addWallBlockToGrid(WallBlock wallBlock) {
+        cells.get(wallBlock.getGridY()).set(wallBlock.getGridX(), 1);
         wallBlocks.add(wallBlock);
     }
 
@@ -80,8 +80,8 @@ public class GameBoard {
      * @param yIndex call to getYCrateLocation method from Crate
      * @param crate is a crate
      */
-    public void addCrateToGrid(Integer xIndex, Integer yIndex, Crate crate) {
-        cells.get((int) yIndex).set((int) xIndex, 2);
+    public void addCrateToGrid(Crate crate) {
+        cells.get(crate.getGridY()).set(crate.getGridX(), 2);
         crates.add(crate);
     }
 
@@ -120,7 +120,7 @@ public class GameBoard {
         for(Crate crate: crates) {
             int gridX = (int) (crate.getX() / 30);
             int gridY = (int) (crate.getY() / 30);
-            // Checks bounds before accessing neighbor cells
+
             if(gridY <= 0) {
                 crate.setUpNeighbor(1);
             } else {
