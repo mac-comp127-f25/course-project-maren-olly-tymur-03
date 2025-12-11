@@ -4,6 +4,7 @@ import edu.macalester.graphics.Rectangle;
 import java.awt.Color;
 import edu.macalester.graphics.Point;
 
+
 public class Crate extends Rectangle {
 
     private static final Color CRATE_COLOR = new Color(139, 69, 19); 
@@ -84,24 +85,20 @@ public class Crate extends Rectangle {
    }
     
    public void moveLeftOnce() {
-        if (leftNeighbor != 1) {
-            if (position.getX() > 0) {
-                Point newPos = new Point(position.getX() - 30, position.getY());
-                gameBoard.updateCrateInGrid((int) position.getX() / 30, (int) position.getY() / 30, (int) newPos.getX() / 30, (int) newPos.getY() / 30);
-                position = newPos;
-                setPosition(newPos);
-            }
+        if (leftNeighbor != 1 && position.getX() > 0) {
+            Point newPos = new Point(position.getX() - 30, position.getY());
+            gameBoard.updateCrateInGrid((int) position.getX() / 30, (int) position.getY() / 30, (int) newPos.getX() / 30, (int) newPos.getY() / 30);
+            position = newPos;
+            setPosition(newPos);
         }
     }
 
     public void moveRightOnce() {
-        if (rightNeighbor != 1) {
-            if (position.getX() < MainGame.getCANVAS_WIDTH() - 30) {
-                Point newPos = new Point(position.getX() + 30, position.getY());
-                gameBoard.updateCrateInGrid((int) position.getX() / 30, (int) position.getY() / 30, (int) newPos.getX() / 30, (int) newPos.getY() / 30);
-                position = newPos;
-                setPosition(newPos);
-            }
+        if (rightNeighbor != 1 && position.getX() < MainGame.getCANVAS_WIDTH() - 30) {
+            Point newPos = new Point(position.getX() + 30, position.getY());
+            gameBoard.updateCrateInGrid((int) position.getX() / 30, (int) position.getY() / 30, (int) newPos.getX() / 30, (int) newPos.getY() / 30);
+            position = newPos;
+            setPosition(newPos);
         }
     }
 

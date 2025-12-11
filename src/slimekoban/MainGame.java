@@ -35,11 +35,12 @@ public class MainGame {
 
     public void left() {
         if(slime.getLeftNeighbor() == 2) {
-            if(gameBoard.getCrateAt(slime.getXGridCellLocation() - 1, slime.getYGridCellLocation()).getLeftNeighbor() != null) {
-                if(gameBoard.getCrateAt(slime.getXGridCellLocation() - 1, slime.getYGridCellLocation()).getXCrateLocation() == 0) {
+            Crate crate = gameBoard.getCrateAt(slime.getXGridCellLocation() - 1, slime.getYGridCellLocation());
+            if(crate != null && crate.getLeftNeighbor() != null) {
+                if(crate.getXCrateLocation() == 0) {
                     resetGame();
                 }
-                gameBoard.getCrateAt(slime.getXGridCellLocation() - 1, slime.getYGridCellLocation()).moveLeftOnce();
+                crate.moveLeftOnce();
             }
             gameBoard.updateCrateNeighbors();
         }
