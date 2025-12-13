@@ -127,4 +127,12 @@ public class Crate extends Rectangle {
             }
         }
     }
+
+    @Override
+    public String toString() {
+        return "Crate [gridX=" + gridX + ", gridY=" + gridY + ", gameBoard=" + gameBoard + ", upNeighbor=" + upNeighbor
+            + ", downNeighbor=" + downNeighbor + ", leftNeighbor=" + leftNeighbor + ", rightNeighbor=" + rightNeighbor
+            + "]";
+    }
+    
 }

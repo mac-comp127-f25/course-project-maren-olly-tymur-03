@@ -183,4 +183,12 @@ public class GameBoard {
             }
         }   
     }
+
+    @Override
+    public String toString() {
+        return "GameBoard [cells=" + cells + ", slime=" + slime + ", upNeighbor=" + upNeighbor + ", downNeighbor="
+            + downNeighbor + ", leftNeighbor=" + leftNeighbor + ", rightNeighbor=" + rightNeighbor + ", crates="
+            + crates + ", wallBlocks=" + wallBlocks + "]";
+    }
+    
 }

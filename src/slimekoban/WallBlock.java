@@ -23,4 +23,10 @@ public class WallBlock extends Rectangle {
     public int getGridY() {
         return gridY;
     }
+
+    @Override
+    public String toString() {
+        return "WallBlock [gridX=" + gridX + ", gridY=" + gridY + "]";
+    }
+    
 }

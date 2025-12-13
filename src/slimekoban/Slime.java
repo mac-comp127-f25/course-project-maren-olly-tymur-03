@@ -137,5 +137,13 @@ public class Slime {
             }
         }
     }
+
+    @Override
+    public String toString() {
+        return "Slime [slimePos=" + slimePos + ", SLIME_SIZE=" + SLIME_SIZE + ", upNeighbor=" + upNeighbor
+            + ", downNeighbor=" + downNeighbor + ", leftNeighbor=" + leftNeighbor + ", rightNeighbor=" + rightNeighbor
+            + ", slimeImage=" + slimeImage + "]";
+    }
+    
 } 
 

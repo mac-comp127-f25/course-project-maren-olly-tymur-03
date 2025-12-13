@@ -292,4 +292,12 @@ public class MainGame {
         new MainGame(levelIndex + 1).run();
         canvas.closeWindow();
     }
+
+    @Override
+    public String toString() {
+        return "MainGame [backgroundColor=" + backgroundColor + ", slime=" + slime + ", game=" + game + ", canvas="
+            + canvas + ", gameBoard=" + gameBoard + ", previousKeys=" + previousKeys + ", winX=" + winX + ", winY="
+            + winY + ", levelIndex=" + levelIndex + ", levels=" + levels + "]";
+    }
+    
 }
