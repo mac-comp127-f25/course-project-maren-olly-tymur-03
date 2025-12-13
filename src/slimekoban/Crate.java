@@ -7,8 +7,7 @@ import edu.macalester.graphics.Point;
 
 public class Crate extends Rectangle {
 
-    private static final Color CRATE_COLOR = new Color(161, 46, 159); 
-    private Color light_pink = new Color(250, 196, 245);
+    private static final Color CRATE_COLOR = new Color(155, 92, 10); 
     private int gridX;
     private int gridY;
     private GameBoard gameBoard;
@@ -65,8 +64,12 @@ public class Crate extends Rectangle {
         this.upNeighbor = upNeighbor;
     }
 
-    
-   public void moveLeftOnce() {
+    /**
+     * If the Crate's left neighboring cell is free and Crate is not at canvas' 
+     * leftmost edge, updates its position in the grid system and then moves it one
+     * space to the left.
+     */
+    public void moveLeftOnce() {
         if (leftNeighbor != 1 && getX() > 0) {
             Point newPos = new Point(getX() - MainGame.CELL_SIZE, getY());
             gameBoard.updateCrateInGrid(gridX, gridY, gridX - 1, gridY);
@@ -76,6 +79,11 @@ public class Crate extends Rectangle {
         }
     }
 
+    /**
+     * If the Crate's right neighboring cell is free and Crate is not at canvas' 
+     * rightmost edge, updates its position in the grid system and then moves it one
+     * space to the right.
+     */
     public void moveRightOnce() {
         if (rightNeighbor != 1 && getX() < MainGame.CANVAS_WIDTH - MainGame.CELL_SIZE) {
             Point newPos = new Point(getX() + MainGame.CELL_SIZE, getY());
@@ -86,6 +94,11 @@ public class Crate extends Rectangle {
         }
     }
 
+    /**
+     * If the Crate's above neighboring cell is free and Crate is not at the top of the
+     * canvas, updates its position in the grid system and then moves it one
+     * space up. 
+     */
     public void moveUpOnce() {
         if (upNeighbor != 1) {
             if (getY() > 0) {
@@ -98,6 +111,11 @@ public class Crate extends Rectangle {
         }
     }
 
+    /**
+     * If the Crate's below neighboring cell is free and Crate is not at the bottom of the
+     * canvas, updates its position in the grid system and then moves it one
+     * space down. 
+     */
     public void moveDownOnce() {
         if(downNeighbor != 1) {
             if (getY() < MainGame.CANVAS_HEIGHT - MainGame.CELL_SIZE) {

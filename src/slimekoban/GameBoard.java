@@ -13,6 +13,17 @@ public class GameBoard {
     public List<Crate> crates = new ArrayList<>();
     public List<WallBlock> wallBlocks = new ArrayList<>();
 
+    /**
+     * Creates a 2D array representing the grid system used to handle internal game logic.
+     * The ArrayLists of integers represent the Y and X axes. (Note that any interation through
+     * the grid begins with the Y values representing rows and then the X values representing
+     * columns.) Integers are used to denote object identification. 
+     * Grid object identification legend:
+        * 0 = free space
+        * 1 = wall (either WallBlock object or canvas extremity)
+        * 2 = Crate object
+     * @param slime Takes the slime object created in MainGame.
+     */
     public GameBoard(Slime slime) {
         this.slime = slime;
         for(int count = 0; count < 20; count++) {
@@ -37,6 +48,10 @@ public class GameBoard {
         return cells;
     }
 
+    /**
+     * Returns Crate object if there is a crate at the specified (x, y) position.
+     * @return Returns Crate if found, null if not.
+     */
     public Crate getCrateAt(int x, int y) {
         if(cells.get(y).get(x) == 2) {
             for(Crate crate : crates) {
@@ -48,6 +63,10 @@ public class GameBoard {
         return null;
     }
 
+    /**
+     * Returns WallBlock object if there is a wall at the specified (x, y) position.
+     * @return Returns WallBlock if found, null if not.
+     */
     public WallBlock getWallBlockAt(int x, int y) {
         if(cells.get(y).get(x) == 1) {
             for(WallBlock wallBlock: wallBlocks) {
@@ -99,6 +118,12 @@ public class GameBoard {
         return cells.get(y).get(x) == 0;
     }
 
+    /**
+     * Checks Slime's position in the grid. If the Slime is at the canvas' edges,
+     * it sets the directionally appropriate neighbor as a wall. Otherwise, it checks
+     * the position of one grid cell above/below/left/right of the Slime and sets those
+     * as the Slime's neighboring cells.
+     */
     public void updateSlimeNeighbors() {
         int gridX = ((int) slime.getSlimePos().getX()) / 30;
         int gridY = ((int) slime.getSlimePos().getY()) / 30;
@@ -125,6 +150,12 @@ public class GameBoard {
         }
     }
 
+    /**
+     * Checks the position of every crate in the grid. If the Crate is at the canvas' edges,
+     * it sets the directionally appropriate neighbor as a wall. Otherwise, it checks
+     * the position of one grid cell above/below/left/right of the Crate and sets those
+     * as the Crates's neighboring cells.
+     */
     public void updateCrateNeighbors() {
         for(Crate crate: crates) {
             int gridX = (int) (crate.getX() / 30);

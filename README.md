@@ -1,30 +1,19 @@
 # Slimekoban!
 
-Slimekoban
+Slimekoban!
 
-Maren Good, Olly Brock, Tymur Cherkashyn
+Maren Good, Olly Brock, Tymur Cherkashyn (COMP127 Fall 2025)
 
 Project description:
 
 Slimekoban is a maze-ified version of the classic puzzle game Sokoban feature an adorable slime as the main sprite!
-To play Slimekoban, you
-Give a brief technical guide to running your code:
-What are its technical requirements? (At a minimum, it requires that you have Java 17/21 installed, because that’s what Kilt Graphics requires. Anything else?)
-How should somebody run the program? Where is the main class?
-Acknowledge any help, references, inspiration, or outside resources you used. If your game includes any art or sound assets, or includes the work of others in any way, credit the creator(s) and link to the source(s).
-Known issues:
 
-Are there fundamental design limitations that users should be aware of?
-Are there specific bugs, glitches, or shortcomings that users should be aware of?
-Societal impact:
+To play Slimekoban, you must have Java 17/21 installed in order to run Kilt Graphics. The main class is called "MainGame", and the game is run from there. The other classes will not run gameplay. Use the up/down/left/right arrows to control the slime and move through the maze. The slime can only move one space at a time, users cannot hold down keys to move multiple squares at once.Crates, which are colored brown, can be pushed around by the slime. Note that they cannot stack, as in multiple crates cannot be moved at once.
 
-Please write about how your project abides by ethical considerations and socially responsible computing practices. Be mindful that anything created by humans, including software, can carry embedded biases and have unintended consequences. In every software project, you must consider the ways in which your program can promote justice or heighten injustices, either through unintentional effects or through malicious misuse.
+Art credit for the slime sprite goes to our very own Maren Good, who designed the pixel art herself!
+Many thanks to Lewis Libby Watt and Paul Cantrell for their guidance in developping this project, and to Hiroyuki Imabayashi for inventing the original Sokoban game in 1981.
 
-This may seem like an odd question. For example, Breakout cannot possibly have negative consequences…right? It is just a game, and such a simple little game at that! But can a blind person play it? What about somebody who uses an assistive device instead of a mouse?
+There are only two levels of the game thus far, and once the second level is completed, the game will quit automatically despite the screen reading "Generating next maze...".
 
-Consider equitable practices in software like inclusivity, accessibility, and diversity. Think about the ways in which the code you write or software you produce may or may not contribute to society. Here are more specific questions to ask yourself:
-
-Does your code have the potential to exclude or cause harm to vulnerable populations?
-In what ways do you anticipate your software project being used in malicious and oppressive situations?
-Could there be unintended consequences of your software creation?
-Note that you do not need to fix every problem you identify. Our goal is for you to develop an awareness of these issues early on in your computing journey. Being able to identify and raise ethical concerns in your software work is an important skill to have. We want you to start developing that skill now.
+Slimekoban is a game intended for simple, puzzle solving fun. We do not anticipate any harmful or malicious uses of this game.
+Slimekoban uses the up/down/left/right arrow keys for gameplay, so if a user does not use a keyboard, they will not be able to control the sprite. For users with low vision/blindness, there are no elements other than visual in Slimekoban, rendering it challenging to play. There is a small amount of text that appears between levels that may or may not be able to be read by a screen reader. There may also be an issue with distinguishing colors if a user has color processesing issues, future iterations of this game will include more patterns/texture to distinguish different game elements from each other.

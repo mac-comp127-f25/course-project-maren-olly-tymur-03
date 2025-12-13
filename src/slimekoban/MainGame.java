@@ -16,23 +16,24 @@ public class MainGame {
     public static final double CELL_SIZE = 30;
     public static final double CANVAS_HEIGHT = CELL_SIZE * 20;
     public static final double CANVAS_WIDTH = CELL_SIZE * 20;
-    private Color forest_green = new Color(66, 83, 55);
+    private Color backgroundColor = new Color(221, 200, 140);
     private Slime slime;
     private GraphicsGroup game;
     private CanvasWindow canvas;
     private GameBoard gameBoard;
     private Set<Key> previousKeys = new HashSet<>();
-    // X = wallblock
-    // [ ] = free space
-    // C = crate
-    // w = victory position
-    // s = starting position
     private int winX;
     private int winY;
     private int levelIndex;
+    // maze map legend: 
+        // X = wallblock
+        // [ ] = free space
+        // C = crate
+        // w = victory position
+        // s = starting position
     private List<List<String>> levels = List.of(
         List.of(
-            "XXXXXXXXXXSXXXXXXXXX",
+            "XXXXXXXXXXsXXXXXXXXX",
             "X    X   C X C     X",
             "X XXXX XXX X C X XXX",
             "X  X   X   X C X   X",
@@ -54,25 +55,42 @@ public class MainGame {
             "XXXXXXXXXwXXXXXXXXXX"
         ),
         List.of(
-            "XXXXXXXXXSXXXXXXXXXX",
+            "XXXXXXXXXXsXXXXXXXXX",
             "X X   X X  X C     X",
-            "X X X     XX XXXXXXX",
+            "X X X   C XX XXXXXXX",
             "X X XX       X     X",
-            ""
-            
+            "X X  XCCXXXX X  XX X",
+            "X XX X    XX X C X X",
+            "XC   X  X  X XXX X X",
+            "XXXXXXXXX XX X   X X",
+            "X         XX X XXX X",
+            "X XXXXX XXXX X X  CX",
+            "X     X C  X   X   X",
+            "XXCXX XXXXXXXXXXXX X",
+            "X   X      X       X",
+            "X   XXXXC  XXXXXXXXX",
+            "X X   X   X C   X  X",
+            "X XXX X XXX X   X  X",
+            "X X   C   C  X C   X",
+            "X XXXXXXC XXXXXX X X",
+            "X     C   X      X X",
+            "XXXXXXXXXXXwXXXXXXXX"            
         )
     );
-    
 
     public static void main(String[] args){
         MainGame mainGame = new MainGame(0);
         mainGame.run();
     }
 
+    /**
+     * Instatiates all game elements (slime, crates, walls, maze).
+     * @param levelIndex Indicates which maze level of the game will be generated.
+     */
     public MainGame(int levelIndex) {
         this.levelIndex = levelIndex;
         canvas = new CanvasWindow("Slimekoban!", (int) CANVAS_WIDTH, (int) CANVAS_HEIGHT);
-        canvas.setBackground(forest_green);
+        canvas.setBackground(backgroundColor);
         game = new GraphicsGroup();
         slime = new Slime(new Point (CELL_SIZE * 10, 0));
         gameBoard = new GameBoard(slime);
@@ -88,6 +106,10 @@ public class MainGame {
         return gameBoard;
     }
 
+    /**
+     * Moves crate left if slime is pushing it from the left. Moves slime left once. Updates both 
+     * slime and crate neighbors. Checks if slime is in winning position.
+     */
     public void left() {
         if(slime.getLeftNeighbor() == 2) {
             Crate crate = gameBoard.getCrateAt(slime.getXGridCellLocation() - 1, slime.getYGridCellLocation());
@@ -110,6 +132,10 @@ public class MainGame {
         win();
     }
 
+    /**
+     * Moves crate right if slime is pushing it from the right. Moves slime right once. Updates both 
+     * slime and crate neighbors. Checks if slime is in winning position.
+     */
     public void right() {
         if(slime.getRightNeighbor() == 2) {
             Crate crate = gameBoard.getCrateAt(slime.getXGridCellLocation() + 1, slime.getYGridCellLocation());
@@ -131,6 +157,10 @@ public class MainGame {
         win();
     }
 
+    /**
+     * Moves crate up if slime is pushing it from the bottom. Moves slime rup once. Updates both 
+     * slime and crate neighbors. Checks if slime is in winning position.
+     */
     public void up() {
         if(slime.getUpNeighbor() == 2) {
             Crate crate = gameBoard.getCrateAt(slime.getXGridCellLocation(), slime.getYGridCellLocation() - 1);
@@ -152,6 +182,10 @@ public class MainGame {
         win();
     }
 
+    /**
+     * Moves crate down if slime is pushing it from above. Moves slime down once. Updates both 
+     * slime and crate neighbors. Checks if slime is in winning position.
+     */
     public void down() {
         if(slime.getDownNeighbor() == 2) {
             Crate crate = gameBoard.getCrateAt(slime.getXGridCellLocation(), slime.getYGridCellLocation() + 1);
@@ -173,14 +207,19 @@ public class MainGame {
         win();
     }
 
+    /**
+     * If the slime is in the winning position, displays win screen and resets to next level.
+     */
     public void win() {
          if (slime.getYGridCellLocation() == winY && slime.getXGridCellLocation() == winX) {
-            System.out.println("made oit down");
             winScreen();
             resetGame();
         }
     }
 
+    /**
+     * Implements animation closure that calls movement methods based on arrow key presses.
+     */
     public void run() {
         canvas.animate(() -> { // closure that runs the game loop
             // slime movement controls: trigger one move per key press (no holding)
@@ -203,7 +242,12 @@ public class MainGame {
         });
     }
 
-    public void makeMaze(List<String> map) { //standardize row/xycol business
+    /**
+     * Iterates through given map, adding elements at specfied positions including slime's starting and 
+     * ending positions. 
+     * @param map List of strings containing maze info.
+     */
+    public void makeMaze(List<String> map) {
         for (int y = 0; y < map.size(); y++) {
             String rowData = map.get(y);
             for (int x = 0; x < rowData.length(); x++) {
@@ -220,12 +264,15 @@ public class MainGame {
                     winX = x;
                     winY = y;
                 } else if (c == 's') {
-                    slime.setSlimePos(new Point(x, y));
+                    slime.setSlimePos(new Point(x * CELL_SIZE, y * CELL_SIZE));
                 }
             }
         }
     }
 
+    /**
+     * Displays message indicating completion of the level.
+     */
     public void winScreen() {
         Rectangle win = new Rectangle(CANVAS_HEIGHT / 2, CANVAS_WIDTH / 2, 200, 200);
         win.setCenter(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
@@ -235,9 +282,12 @@ public class MainGame {
         game.add(win);
         game.add(winText);
         canvas.draw();
-        canvas.pause(5000);
+        canvas.pause(4000);
     }
 
+    /**
+     * Creates a new game with the next maze level.
+     */
     public void resetGame() {
         new MainGame(levelIndex + 1).run();
         canvas.closeWindow();

@@ -64,8 +64,10 @@ public class Slime {
         this.upNeighbor = upNeighbor;
     }
     
-    // reurns the Y index of where the wall is supossed to be the the cells arraylist
-   public Integer getYGridCellLocation() {
+    /**
+     * Returns the Y index of where the wall's location in the cells ArrayList.
+     */
+    public Integer getYGridCellLocation() {
         Integer yIndex = Integer.valueOf((int) slimePos.getY());
         if (yIndex >= 30) {
             yIndex /= 30;
@@ -75,8 +77,10 @@ public class Slime {
         return yIndex;
    }
 
-   // reurns the X index of where the wall is supossed to be the the cells arraylist
-   public Integer getXGridCellLocation() {
+    /**
+     * Returns the Y index of where the wall's location in the cells ArrayList.
+     */
+    public Integer getXGridCellLocation() {
         Integer xIndex = Integer.valueOf((int) slimePos.getX());
         if (xIndex >= 30) {
             xIndex /= 30;
@@ -86,8 +90,10 @@ public class Slime {
         return xIndex;
    }
     
+    /**
+    * If slime's left neighbor is free, moves it one space to the left.
+    */
     public void moveLeftOnce() {
-        // Only move if left neighbor is free (0)
         if (leftNeighbor != null && leftNeighbor == 0) {
             if (slimePos.getX() > 0) {
                 slimePos = new Point(slimePos.getX() - SLIME_SIZE, slimePos.getY());
@@ -96,8 +102,10 @@ public class Slime {
         }
     }
 
+    /**
+    * If slime's right neighbor is free, moves it one space to the right.
+    */
     public void moveRightOnce() {
-        // Only move if right neighbor is free (0)
         if (rightNeighbor != null && rightNeighbor == 0) {
             if (slimePos.getX() < MainGame.CANVAS_WIDTH - SLIME_SIZE) {
                 slimePos = new Point(slimePos.getX() + SLIME_SIZE, slimePos.getY());
@@ -106,8 +114,10 @@ public class Slime {
         }
     }
 
+    /**
+    * If slime's above neighbor is free, moves it one space up.
+    */
     public void moveUpOnce() {
-        // Only move if up neighbor is free (0)
         if (upNeighbor != null && upNeighbor == 0) {
             if (slimePos.getY() > 0) {
                 slimePos = new Point(slimePos.getX(), slimePos.getY() - SLIME_SIZE);
@@ -116,8 +126,10 @@ public class Slime {
         }
     }
 
+    /**
+    * If slime's below neighbor is free, moves it one space down.
+    */
     public void moveDownOnce() {
-        // Only move if down neighbor is free (0)
         if(downNeighbor != null && downNeighbor == 0) {
             if (slimePos.getY() < MainGame.CANVAS_HEIGHT - SLIME_SIZE) {
                 slimePos = new Point(slimePos.getX(), slimePos.getY() + SLIME_SIZE);
