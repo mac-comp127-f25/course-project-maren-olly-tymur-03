@@ -4,7 +4,7 @@ import edu.macalester.graphics.Rectangle;
 import java.awt.Color;
 
 public class WallBlock extends Rectangle {
-    private static final Color WALL_COLOR = Color.DARK_GRAY;
+    private static final Color WALL_COLOR = new Color (128, 49, 21);
     private int gridX;
     private int gridY;
     

@@ -7,7 +7,8 @@ import edu.macalester.graphics.Point;
 
 public class Crate extends Rectangle {
 
-    private static final Color CRATE_COLOR = new Color(139, 69, 19); 
+    private static final Color CRATE_COLOR = new Color(161, 46, 159); 
+    private Color light_pink = new Color(250, 196, 245);
     private int gridX;
     private int gridY;
     private GameBoard gameBoard;
@@ -76,7 +77,7 @@ public class Crate extends Rectangle {
     }
 
     public void moveRightOnce() {
-        if (rightNeighbor != 1 && getX() < MainGame.getCANVAS_WIDTH() - MainGame.CELL_SIZE) {
+        if (rightNeighbor != 1 && getX() < MainGame.CANVAS_WIDTH - MainGame.CELL_SIZE) {
             Point newPos = new Point(getX() + MainGame.CELL_SIZE, getY());
             gameBoard.updateCrateInGrid(gridX, gridY, gridX + 1, gridY);
             // update internal grid coords and visual position
@@ -99,7 +100,7 @@ public class Crate extends Rectangle {
 
     public void moveDownOnce() {
         if(downNeighbor != 1) {
-            if (getY() < MainGame.getCANVAS_HEIGHT() - MainGame.CELL_SIZE) {
+            if (getY() < MainGame.CANVAS_HEIGHT - MainGame.CELL_SIZE) {
                 Point newPos = new Point(getX(), getY() + MainGame.CELL_SIZE);
                 gameBoard.updateCrateInGrid(gridX, gridY, gridX, gridY + 1);
                 // update internal grid coords and visual position

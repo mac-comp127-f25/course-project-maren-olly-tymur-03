@@ -99,7 +99,7 @@ public class Slime {
     public void moveRightOnce() {
         // Only move if right neighbor is free (0)
         if (rightNeighbor != null && rightNeighbor == 0) {
-            if (slimePos.getX() < MainGame.getCANVAS_WIDTH() - SLIME_SIZE) {
+            if (slimePos.getX() < MainGame.CANVAS_WIDTH - SLIME_SIZE) {
                 slimePos = new Point(slimePos.getX() + SLIME_SIZE, slimePos.getY());
                 slimeImage.setPosition(slimePos);
             }
@@ -119,7 +119,7 @@ public class Slime {
     public void moveDownOnce() {
         // Only move if down neighbor is free (0)
         if(downNeighbor != null && downNeighbor == 0) {
-            if (slimePos.getY() < MainGame.getCANVAS_HEIGHT() - SLIME_SIZE) {
+            if (slimePos.getY() < MainGame.CANVAS_HEIGHT - SLIME_SIZE) {
                 slimePos = new Point(slimePos.getX(), slimePos.getY() + SLIME_SIZE);
                 slimeImage.setPosition(slimePos);
             }
