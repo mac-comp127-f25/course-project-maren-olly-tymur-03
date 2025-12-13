@@ -1,0 +1,138 @@
+package slimekoban;
+
+import edu.macalester.graphics.Rectangle;
+import java.awt.Color;
+import edu.macalester.graphics.Point;
+
+
+public class Crate extends Rectangle {
+
+    private static final Color CRATE_COLOR = new Color(155, 92, 10); 
+    private int gridX;
+    private int gridY;
+    private GameBoard gameBoard;
+    public Integer upNeighbor = 0;
+    public Integer downNeighbor = 0;
+    public Integer leftNeighbor = 0;
+    public Integer rightNeighbor = 0;
+
+    public Crate(int gridX, int gridY, GameBoard gameBoard) {
+        super(gridX * MainGame.CELL_SIZE, gridY * MainGame.CELL_SIZE, MainGame.CELL_SIZE, MainGame.CELL_SIZE);
+        this.gridX = gridX;
+        this.gridY = gridY;
+        this.gameBoard = gameBoard;
+        setFillColor(CRATE_COLOR);
+        setStrokeColor(Color.BLACK);
+    }
+
+    public int getGridX() {
+        return gridX;
+    }
+
+    public int getGridY() {
+        return gridY;
+    }
+
+    public Integer getDownNeighbor() {
+        return downNeighbor;
+    }
+
+    public Integer getLeftNeighbor() {
+        return leftNeighbor;
+    }
+    public Integer getRightNeighbor() {
+        return rightNeighbor;
+    }
+
+    public Integer getUpNeighbor() {
+        return upNeighbor;
+    }
+
+    public void setDownNeighbor(Integer downNeighbor) {
+        this.downNeighbor = downNeighbor;
+    }
+
+    public void setLeftNeighbor(Integer leftNeighbor) {
+        this.leftNeighbor = leftNeighbor;
+    }
+
+    public void setRightNeighbor(Integer rightNeighbor) {
+        this.rightNeighbor = rightNeighbor;
+    }
+
+    public void setUpNeighbor(Integer upNeighbor) {
+        this.upNeighbor = upNeighbor;
+    }
+
+    /**
+     * If the Crate's left neighboring cell is free and Crate is not at canvas' 
+     * leftmost edge, updates its position in the grid system and then moves it one
+     * space to the left.
+     */
+    public void moveLeftOnce() {
+        if (leftNeighbor != 1 && getX() > 0) {
+            Point newPos = new Point(getX() - MainGame.CELL_SIZE, getY());
+            gameBoard.updateCrateInGrid(gridX, gridY, gridX - 1, gridY);
+            // update internal grid coords and visual position
+            gridX = gridX - 1;
+            setPosition(newPos);
+        }
+    }
+
+    /**
+     * If the Crate's right neighboring cell is free and Crate is not at canvas' 
+     * rightmost edge, updates its position in the grid system and then moves it one
+     * space to the right.
+     */
+    public void moveRightOnce() {
+        if (rightNeighbor != 1 && getX() < MainGame.CANVAS_WIDTH - MainGame.CELL_SIZE) {
+            Point newPos = new Point(getX() + MainGame.CELL_SIZE, getY());
+            gameBoard.updateCrateInGrid(gridX, gridY, gridX + 1, gridY);
+            // update internal grid coords and visual position
+            gridX = gridX + 1;
+            setPosition(newPos);
+        }
+    }
+
+    /**
+     * If the Crate's above neighboring cell is free and Crate is not at the top of the
+     * canvas, updates its position in the grid system and then moves it one
+     * space up. 
+     */
+    public void moveUpOnce() {
+        if (upNeighbor != 1) {
+            if (getY() > 0) {
+                Point newPos = new Point(getX(), getY() - MainGame.CELL_SIZE);
+                gameBoard.updateCrateInGrid(gridX, gridY, gridX, gridY - 1);
+                // update internal grid coords and visual position
+                gridY = gridY - 1;
+                setPosition(newPos);
+            }
+        }
+    }
+
+    /**
+     * If the Crate's below neighboring cell is free and Crate is not at the bottom of the
+     * canvas, updates its position in the grid system and then moves it one
+     * space down. 
+     */
+    public void moveDownOnce() {
+        if(downNeighbor != 1) {
+            if (getY() < MainGame.CANVAS_HEIGHT - MainGame.CELL_SIZE) {
+                Point newPos = new Point(getX(), getY() + MainGame.CELL_SIZE);
+                gameBoard.updateCrateInGrid(gridX, gridY, gridX, gridY + 1);
+                // update internal grid coords and visual position
+                gridY = gridY + 1;
+                setPosition(newPos);
+            }
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Crate [gridX=" + gridX + ", gridY=" + gridY + ", gameBoard=" + gameBoard + ", upNeighbor=" + upNeighbor
+            + ", downNeighbor=" + downNeighbor + ", leftNeighbor=" + leftNeighbor + ", rightNeighbor=" + rightNeighbor
+            + "]";
+    }
+    
+}
